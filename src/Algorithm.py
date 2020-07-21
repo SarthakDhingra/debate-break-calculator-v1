@@ -30,12 +30,21 @@ class FourTeams:
             data[0][i] = max_points / 4
 
         # # starting from round 2
-        # for round in range(1, rounds):
-        #     round_point_max = (round+1)*3
-        #     for point in range()
+        for round in range(1, rounds):
+            round_max = (round+1)*3
+            for point in range(round_max):
+                teams = 0
+                if point == 0:
+                    teams = data[round-1][0] / 4
+                else: 
+                    for child in range(point-3,point+1):
+                        if child < 0:
+                            continue
+                        teams += data[round-1][child] / 4
+                
+                data[round][point] = teams
 
-
-
-
+        # TO DO
+        # calculate minimum # of teams to break and that percentage
         return None
         
