@@ -46,5 +46,6 @@ class FourTeams:
 
         # TO DO
         # calculate minimum # of teams to break and that percentage
+        # maybe have a different method to create the matrix, then can test that too?
         return None
         
