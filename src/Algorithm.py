@@ -15,6 +15,8 @@ class TwoTeams:
 class FourTeams:
 
     def __init__(self, verbose=False):
+        print("VERBOSE")
+        print(verbose)
         self.verbose = verbose
 
     def getBreak(self, teams, rounds, breaking):
@@ -30,12 +32,24 @@ class FourTeams:
         
         self.fill_data(data, rounds, teams)
         
-        print(np.array(data))
+        if self.verbose:
+            print(np.array(data))
+        
+        teams_broken = 0
+        final_teams = data[-1]
+        #todo need to handle case where min_point is not assigned
+        min_points = False
+        for point in reversed(range(len(final_teams))):
+            teams_broken += final_teams[point]
+            if teams_broken >= breaking:
+                min_points = point
+                break
+
 
         # TO DO
         # calculate minimum # of teams to break and that percentage
         # maybe have a different method to create the matrix, then can test that too?
-        return None
+        return min_points
     
     def fill_data(self, data, rounds, teams):
 
@@ -46,7 +60,7 @@ class FourTeams:
         # # starting from round 2
         for round in range(1, rounds):
             round_max = (round+1)*3
-            for point in range(round_max):
+            for point in range(round_max+1):
                 teams = 0
                 if point == 0:
                     teams = data[round-1][0] / 4
@@ -56,10 +70,8 @@ class FourTeams:
                             continue
                         teams += data[round-1][child] / 4
                 
-                data[round][point] = teams 
-    
-    def print_frame(self,frame):
-        for row in frame:
-            print(row)
+                data[round][point] = teams
+        
+
 
         

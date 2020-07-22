@@ -12,8 +12,8 @@ class AlgorithmTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.four_teams = FourTeams()
-        cls.two_teams = TwoTeams()
+        cls.four_teams = FourTeams(verbose=cls.verbose)
+        cls.two_teams = TwoTeams(verbose=cls.verbose)
     
     def run_four_teams(self, test, answer):
         result = self.four_teams.getBreak(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
