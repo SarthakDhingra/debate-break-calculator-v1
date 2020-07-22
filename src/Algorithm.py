@@ -60,7 +60,7 @@ class FourTeams:
         for i in range(4):
             data[0][i] = teams / 4
 
-        # # starting from round 2
+        # starting from round 2
         for round in range(1, rounds):
             round_max = (round+1)*3
             for point in range(round_max+1):
