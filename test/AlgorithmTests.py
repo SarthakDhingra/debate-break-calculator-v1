@@ -16,11 +16,11 @@ class AlgorithmTests(unittest.TestCase):
         cls.two_teams = TwoTeams()
     
     def run_four_teams(self, test, answer):
-        result = self.four_teams.getBreak(num_teams=test[0], num_breaking=test[1],num_rounds=test[2])
-        self.assertEqual(result,answer,"FAIL\n Expected = {answer}, result={result}")
+        result = self.four_teams.getBreak(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
+        self.assertEqual(result,answer,f"FAIL\n Expected = {answer}, result={result}")
     
     def test_temp(self):
-        test = (30,8,5)
+        test = {"teams":30,"breaking":8,"rounds":5}
         answer = 9
         self.run_four_teams(test,answer)
 
