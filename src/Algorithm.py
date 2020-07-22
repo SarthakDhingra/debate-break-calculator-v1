@@ -71,6 +71,13 @@ class FourTeams:
                         teams += data[round-1][child] / 4
                 
                 data[round][point] = teams
+
+
+
+    # TODO
+    # get percentage breaking on break point
+    # get # on break path
+    # 
         
 
 
