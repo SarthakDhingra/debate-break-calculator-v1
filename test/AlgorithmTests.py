@@ -17,11 +17,12 @@ class AlgorithmTests(unittest.TestCase):
     
     def run_four_teams(self, test, answer):
         result = self.four_teams.getBreak(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
+        print(result)
         self.assertEqual(result,answer,f"FAIL\n Expected = {answer}, result={result}")
     
     def test_temp(self):
         test = {"teams":30,"breaking":8,"rounds":5}
-        answer = 9
+        answer = {"min_points":9, "breaking_on_break_point":65}
         self.run_four_teams(test,answer)
 
 if __name__ == '__main__':

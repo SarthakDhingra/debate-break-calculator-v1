@@ -40,9 +40,11 @@ class FourTeams:
         final_teams = data[-1]
         #todo need to handle case where min_point is not assigned
         min_points = False
+        breaking_on_break_point = False
         for point in reversed(range(len(final_teams))):
             teams_broken += final_teams[point]
             if teams_broken >= breaking:
+                breaking_on_break_point = ((teams_broken - breaking) / final_teams[point])*100
                 min_points = point
                 break
 
@@ -50,7 +52,7 @@ class FourTeams:
         # TO DO
         # calculate minimum # of teams to break and that percentage
         # maybe have a different method to create the matrix, then can test that too?
-        return min_points
+        return {"min_points":min_points, "breaking_on_break_point":breaking_on_break_point}
     
     def fill_data(self, data, rounds, teams):
 
