@@ -23,6 +23,7 @@ class FourTeams:
         # come up with better name for 2d array
         max_points = rounds*3
 
+
         # each row represents a round
         # each column represents the number of points
         # rounds are indexed from 0 (i.e. row 0 = round 1)
@@ -77,7 +78,6 @@ class FourTeams:
     # TODO
     # get percentage breaking on break point
     # get # on break path
-    # 
         
 
 
