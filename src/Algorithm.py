@@ -4,10 +4,11 @@ import numpy as np
 np.set_printoptions(linewidth=300)
 
 # WORST CASE
-# add up all rounded up points
+# add up all rounded up points for that round
 # the highest point while it still smaller than number breaking is guranteed break
 # the point after is the cut off
 # the number breaking from this is (x - summation of all points until guranteed break) out of R where R can be ceil or floor of cutoff number
+# have to explain why R can either or if its best case, why not ceil (because there are break cases )
 
 # BEST CASE
 # same but with rounded down
