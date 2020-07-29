@@ -3,6 +3,15 @@
 import numpy as np
 np.set_printoptions(linewidth=300)
 
+# WORST CASE
+# add up all rounded up points
+# the highest point while it still smaller than number breaking is guranteed break
+# the point after is the cut off
+# the number breaking from this is (x - summation of all points until guranteed break) out of R where R can be ceil or floor of cutoff number
+
+# BEST CASE
+# same but with rounded down
+
 class TwoTeams:
 
     def __init__(self, verbose=False):

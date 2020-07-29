@@ -22,7 +22,7 @@ class AlgorithmTests(unittest.TestCase):
     
     def test_temp(self):
         test = {"teams":30,"breaking":8,"rounds":5}
-        answer = {"min_points":9, "breaking_on_break_point":65}
+        answer = {"min_points":9, "breaking_on_break_point":38}
         self.run_four_teams(test,answer)
 
 if __name__ == '__main__':
