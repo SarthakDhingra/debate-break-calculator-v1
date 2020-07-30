@@ -29,6 +29,48 @@ class FourTeams:
         print(verbose)
         self.verbose = verbose
 
+    def new_algorith(teams,breaking,rounds):
+
+        if rounds < 1 or rounds > 9:
+            raise ValueError('bad rounds')
+        
+        if breaking % 4 != 0:
+            raise ValueError('bad break')
+
+        if breaking >= teams:
+            return "All teams break"
+
+        while(teams%4 != 0):
+            teams += 1
+        
+        tournament_best = [0 for i in range(teams)]
+        tournament_worst = [0 for i in range(teams)]
+
+        for round in range(rounds):
+            for team in in range(0,teans,4):
+                
+                # pull ups lose
+                tournament_best[team+1] += 1
+                tournament_best[team+2] += 2
+                tournament_best[team+3] += 3
+
+                # pull ups win
+                tournament_worst[team] += 3
+                tournament_worst[team+1] += 2
+                tournament_worst[team+2] += 3
+
+            tournament_best.sort()
+            tournament_worst.sort()
+        
+        break_best = tournament_best[-breaking]
+        break_worst = tournament_best[-worst]
+
+        #finish break
+
+
+
+
+
     def getBreak(self, teams, rounds, breaking):
         # come up with better name for 2d array
         max_points = rounds*3
