@@ -68,10 +68,20 @@ class FourTeams:
         return results
 
     def get_results(tournament,number_teams,number_breaking):
-        i = len(tournament)
+        i = len(tournament) - 2
+        count = 0
+        guranteed_break = touranment[i+1]
+        speaks_break = float('-inf')
         
-
         while i >= 0:
+            # if tournament[i] != gurantee
+
+
+            if i == 
+            
+
+
+            i -= 1
 
         # WANT
         # Guranteed Break Point "guranteed_break"
