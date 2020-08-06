@@ -60,7 +60,7 @@ class FourTeams:
 
             tournament_best.sort()
             tournament_worst.sort()
-
+        
         results = {}
         results['best'] = get_results(tournament=tournament_best,number_teams=teams,number_breaking=breaking)
         results['worst'] = get_results(tournament=tournament_worst,number_teams=teams,number_breaking=breaking)
@@ -68,26 +68,54 @@ class FourTeams:
         return results
 
     def get_results(tournament,number_teams,number_breaking):
+        i = len(tournament)
+        
+
+        while i >= 0:
 
         # WANT
-        # Guranteed Break Point
-        # Break Point
-        # number breaking on break point / total breaking on break point
+        # Guranteed Break Point "guranteed_break"
+        # Break Point "break_speaks"
+        # number breaking on break point "breaking_speaks"
+        # total on break point "total_break_point"
 
         #TWO CASES
         # CASE 1
-        results = {}
-        
-        i = teams-breaking
-        breaking_point = tournament[i]
+        # last breaking team is guranteed break
+        # CASE 2
+        # last breaking team breaks on speaks
 
-        if breaking_point > tournament[i-1]:
-            results['guranteed_break_point'] = breaking_point
-            results['brea']
-            return results  
+        #
+
+        # results = {}
+        # i = teams-breaking
+        # breaking_point = tournament[i]
+
+        # # CASE 1
+        # if breaking_point > tournament[i-1]:
+        #     results['guranteed_break'] = breaking_point
+        #     results['speaks_break'] = tournament[i-1]
+        #     results['breaking_on_speaks'] = 0
+        #     results['total_on_speaks'] = self.get_count(tournament,i-1,left=True)
+        # else:
+        #     results['speaks_break'] = tournament[i]
+        #     results['breaking_on_speaks'] = 
+
+
+
         
-        while breaking_point != guranteed_break:
-            breaking_point = 
+
+
+        # return results  
+
+
+        
+    def get_count(tournament,index,left=False,right=False):
+
+        
+
+        
+        
         
 
         
