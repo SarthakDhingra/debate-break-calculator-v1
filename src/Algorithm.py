@@ -25,81 +25,81 @@ class TwoTeams:
 class FourTeams:
 
     def __init__(self, verbose=False):
-        print("VERBOSE")
-        print(verbose)
         self.verbose = verbose
 
+    def get_tournament(teams,breaking,rounds):
 
-
-
-
-        #finish break
-
-
-
-
-
-    def getBreak(self, teams, rounds, breaking):
-        # come up with better name for 2d array
-        max_points = rounds*3
-
-
-        # each row represents a round
-        # each column represents the number of points
-        # rounds are indexed from 0 (i.e. row 0 = round 1)
-        # points start at 0
-        # each value represents the number of teams after round (row #) on the column number of points
-        data = [[0 for i in range(max_points+1)] for i in range(rounds)]
+        if rounds < 1 or rounds > 9:
+            raise ValueError('bad rounds')
         
-        self.fill_data(data, rounds, teams)
+        if breaking % 4 != 0:
+            raise ValueError('bad break')
+
+        if teams <= breaking:
+            return "All teams break"
+
+        # make teams divisible by 4
+        while(teams%4 != 0):
+            teams += 1
         
-        if self.verbose:
-            print(np.array(data))
-        
-        teams_broken = 0
-        final_teams = data[-1]
-        #todo need to handle case where min_point is not assigned
-        min_points = False
-        breaking_on_break_point = False
-        for point in reversed(range(len(final_teams))):
-            teams_broken += final_teams[point]
-            if teams_broken >= breaking:
-                breaking_on_break_point = ((teams_broken - breaking) / final_teams[point])*100
-                min_points = point
-                break
+        tournament_best = [0 for i in range(teams)]
+        tournament_worst = [0 for i in range(teams)]
 
-
-        # TO DO
-        # calculate minimum # of teams to break and that percentage
-        # maybe have a different method to create the matrix, then can test that too?
-        return {"min_points":min_points, "breaking_on_break_point":breaking_on_break_point}
-    
-    def fill_data(self, data, rounds, teams):
-
-         # ASSUMPTION that there is always at least one round
-        for i in range(4):
-            data[0][i] = teams / 4
-
-        # starting from round 2
-        for round in range(1, rounds):
-            round_max = (round+1)*3
-            for point in range(round_max+1):
-                teams = 0
-                if point == 0:
-                    teams = data[round-1][0] / 4
-                else: 
-                    for child in range(point-3,point+1):
-                        if child < 0:
-                            continue
-                        teams += data[round-1][child] / 4
+        for round in range(rounds):
+            for team in in range(0,teams,4):
                 
-                data[round][point] = teams
+                # pull ups lose
+                tournament_best[team+1] += 1
+                tournament_best[team+2] += 2
+                tournament_best[team+3] += 3
+
+                # pull ups win
+                tournament_worst[team] += 3
+                tournament_worst[team+1] += 2
+                tournament_worst[team+2] += 3
+
+            tournament_best.sort()
+            tournament_worst.sort()
+
+        results = {}
+        results['best'] = get_results(tournament=tournament_best,number_teams=teams,number_breaking=breaking)
+        results['worst'] = get_results(tournament=tournament_worst,number_teams=teams,number_breaking=breaking)
+
+        return results
+
+    def get_results(tournament,number_teams,number_breaking):
+
+        # WANT
+        # Guranteed Break Point
+        # Break Point
+        # number breaking on break point / total breaking on break point
+
+        #TWO CASES
+        # CASE 1
+        results = {}
+        
+        i = teams-breaking
+        breaking_point = tournament[i]
+
+        if breaking_point > tournament[i-1]:
+            results['guranteed_break_point'] = breaking_point
+            results['brea']
+            return results  
+        
+        while breaking_point != guranteed_break:
+            breaking_point = 
+        
+
+        
+            
 
 
 
-    # TODO
-    # get percentage breaking on break point
-    # get # on break path
+
+        
+
+
+
         
 
 
