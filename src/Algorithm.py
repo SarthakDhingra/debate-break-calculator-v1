@@ -13,21 +13,12 @@ np.set_printoptions(linewidth=300)
 # BEST CASE
 # same but with rounded down
 
-class TwoTeams:
-
-    def __init__(self, verbose=False):
-        self.verbose = verbose
-
-    def getBreak(self, num_teams, num_rounds, num_breaking):
-        print("got break")
-        return None
-
 class FourTeams:
 
     def __init__(self, verbose=False):
         self.verbose = verbose
 
-    def get_tournament(teams,breaking,rounds):
+    def get_Break(self,teams,breaking,rounds):
 
         if rounds < 1 or rounds > 9:
             raise ValueError('bad rounds')
@@ -46,7 +37,7 @@ class FourTeams:
         tournament_worst = [0 for i in range(teams)]
 
         for round in range(rounds):
-            for team in in range(0,teams,4):
+            for team in range(0,teams,4):
                 
                 # pull ups lose
                 tournament_best[team+1] += 1
@@ -61,28 +52,12 @@ class FourTeams:
             tournament_best.sort()
             tournament_worst.sort()
         
-        results = {}
-        results['best'] = get_results(tournament=tournament_best,number_teams=teams,number_breaking=breaking)
-        results['worst'] = get_results(tournament=tournament_worst,number_teams=teams,number_breaking=breaking)
+        results_best = self.get_results(tournament=tournament_best,teams=teams,breaking=breaking)
+        results_worst = self.get_results(tournament=tournament_worst,teams=teams,breaking=breaking)
 
-        return results
+        return results_best, results_worst
 
-    def get_results(tournament,number_teams,number_breaking):
-        i = len(tournament) - 2
-        count = 0
-        guranteed_break = touranment[i+1]
-        speaks_break = float('-inf')
-        
-        while i >= 0:
-            # if tournament[i] != gurantee
-
-
-            if i == 
-            
-
-
-            i -= 1
-
+    def get_results(self,tournament,teams,breaking):
         # WANT
         # Guranteed Break Point "guranteed_break"
         # Break Point "break_speaks"
@@ -97,30 +72,70 @@ class FourTeams:
 
         #
 
-        # results = {}
-        # i = teams-breaking
-        # breaking_point = tournament[i]
+        # instead of -break, should use break_index = len(tournament) - breaking
+        break_index = len(tournament) - breaking
 
-        # # CASE 1
-        # if breaking_point > tournament[i-1]:
-        #     results['guranteed_break'] = breaking_point
-        #     results['speaks_break'] = tournament[i-1]
-        #     results['breaking_on_speaks'] = 0
-        #     results['total_on_speaks'] = self.get_count(tournament,i-1,left=True)
-        # else:
-        #     results['speaks_break'] = tournament[i]
-        #     results['breaking_on_speaks'] = 
+        points = []
+        results = {}
 
-
-
+        for i in range(-breaking,1):
+            if len(points) == 2:
+                break
+            if tournament[i] not in points:
+                points.append(tournament[i])
         
+        # can probably simplify this
+        if len(points) == 1:
+            if tournament[break_index-1] < tournament[break_index]:
+                points = [tournament[break_index], points[0]]
+            else:
+                points = [points[0],"No Guranteed Break"]
+        elif tournament[break_index-1] < tournament[break_index]:
+            points = [tournament[break_index-1], tournament[break_index]]
 
+        results['speaks_break'] = points[0]
+        results['guranteed_break'] = points[1]
 
-        # return results  
+        # bug if there is no guranteed break point
+        num_speaks_break = 0
+        i = break_index
+        count = 0
+        while i < len(tournament) and results['speaks_break'] == tournament[i]:
+            i += 1
+            count += 1
+        results['breaking_on_speaks'] = num_speaks_break
 
-
+        total_speaks_break = 0
+        i = break_index-1
+        while i >= 0  and tournament[i] == results['speaks_break']:
+            i += 1
+            total_speaks_break += 1
         
-    def get_count(tournament,index,left=False,right=False):
+        results['total_on_speaks'] = total_speaks_break + num_speaks_break
+
+        return results
+
+
+
+
+    #     results = {}
+    #     i = teams-breaking
+    #     breaking_point = tournament[i]
+
+    #     # no one breaks on speaks, and guranteed_break point is last breaking team
+    #     if breaking_point > tournament[i-1]:
+    #         results['guranteed_break'] = breaking_point
+    #         results['speaks_break'] = tournament[i-1]
+    #         results['breaking_on_speaks'] = 0
+    #         results['total_on_speaks'] = self.get_count(tournament,i-1,left=True)
+    #     else:
+    #         results['speaks_break'] = tournament[i]
+    #         results['breaking_on_speaks'] = 
+    #         results['']
+
+    #     return results  
+    # def get_count(tournament,index,left=False,right=False):
+
 
         
 
