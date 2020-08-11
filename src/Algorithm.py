@@ -47,7 +47,7 @@ class FourTeams:
                 # pull ups win
                 tournament_worst[team] += 3
                 tournament_worst[team+1] += 2
-                tournament_worst[team+2] += 3
+                tournament_worst[team+2] += 1
 
             tournament_best.sort()
             tournament_worst.sort()
