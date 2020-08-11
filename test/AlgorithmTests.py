@@ -23,15 +23,15 @@ class AlgorithmTests(unittest.TestCase):
         # total on break point "total_break_point"
 
         #give --> break point, number breaking on that point, total breaking on that point, guranteed break
-        self.assertLessEqual(results_best["guranteed_break"], answer["guranteed_break"],f"FAIL\n Expected: {answer}\n Result:{results_best}")
-        self.assertLessEqual(results_best['speaks_break'], answer["speaks_break"],f"FAIL\n Expected: {answer}\n Result:{results_best}")
+        self.assertLessEqual(results_best["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT BEST\n Expected: {answer}\n Result:{results_best}")
+        self.assertLessEqual(results_best['speaks_break'], answer["speaks_break"],f"\nFAILRESULT BEST\n Expected: {answer}\n Result:{results_best}")
         if results_best['speaks_break'] == answer["speaks_break"]:
-            self.assertLessEqual(results_best["breaking_on_speaks"], answer["breaking_on_speaks"],f"FAIL\n Expected: {answer}\n Result:{results_best}")
+            self.assertLessEqual(results_best["breaking_on_speaks"], answer["breaking_on_speaks"],f"\nFAIL RESULT BEST\n Expected: {answer}\n Result:{results_best}")
         
-        self.assertGreaterEqual(results_worst["guranteed_break"], answer["guranteed_break"],f"FAIL\n Expected: {answer}\n Result:{results_worst}")
-        self.assertGreaterEqual(results_worst['speaks_break'], answer["speaks_break"],f"FAIL\n Expected: {answer}\n Result:{results_worst}")
+        self.assertGreaterEqual(results_worst["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT WORST\n Expected: {answer}\n Result:{results_worst}")
+        self.assertGreaterEqual(results_worst['speaks_break'], answer["speaks_break"],f"\nFAIL RESULT WORST\n Expected: {answer}\n Result:{results_worst}")
         if results_worst['speaks_break'] == answer["speaks_break"]:
-            self.assertGreaterEqual(results_best["breaking_on_speaks"], answer["breaking_on_speaks"],f"FAIL\n Expected: {answer}\n Result:{results_worst}")
+            self.assertGreaterEqual(results_best["breaking_on_speaks"], answer["breaking_on_speaks"],f"\nFAIL RESULT WORST\n Expected: {answer}\n Result:{results_worst}")
     
     def test_ubciv_2019(self):
         test = {"teams":40,"breaking":8,"rounds":5}
