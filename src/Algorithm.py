@@ -13,10 +13,12 @@ np.set_printoptions(linewidth=300)
 # BEST CASE
 # same but with rounded down
 
-class FourTeams:
+class Tournament:
 
-    def __init__(self, verbose=False):
+    def __init__(self, style, verbose=False):
         self.verbose = verbose
+        self.style = style
+        self.team_map = {0:3,1:2,2:1}
 
     def get_Break(self,teams,breaking,rounds):
 
@@ -30,24 +32,26 @@ class FourTeams:
             return "All teams break"
 
         # make teams divisible by 4
-        while(teams%4 != 0):
+        while(teams% self.style != 0):
             teams += 1
         
         tournament_best = [0 for i in range(teams)]
         tournament_worst = [0 for i in range(teams)]
 
         for round in range(rounds):
-            for team in range(0,teams,4):
-                
-                # pull ups lose
-                tournament_best[team+1] += 1
-                tournament_best[team+2] += 2
-                tournament_best[team+3] += 3
+            for team in range(0,teams):
+                if (team % self.style == 0):
+                    # pull ups lose
 
-                # pull ups win
-                tournament_worst[team] += 3
-                tournament_worst[team+1] += 2
-                tournament_worst[team+2] += 1
+                    for i in range(1,self.style):
+                        print(i)
+                        tournament_best[team+i] += i
+                        tournament_worst[team + i - 1] += self.team_map[i-1]
+
+                    # pull ups win
+                    # tournament_worst[team] += 3
+                    # tournament_worst[team+1] += 2
+                    # tournament_worst[team+2] += 1
 
             tournament_best.sort()
             tournament_worst.sort()

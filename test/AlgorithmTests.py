@@ -6,16 +6,23 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + "/../src/")
 
-from Algorithm import FourTeams
+from Algorithm import Tournament
 
 class AlgorithmTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.four_teams = FourTeams(verbose=cls.verbose)
+        cls.FourTeams = Tournament(style=4, verbose=cls.verbose)
+        cls.TwoTeams = Tournament(style=2, verbose=cls.verbose)
     
-    def run_four_teams(self, test, answer):
-        results_best,results_worst = self.four_teams.get_Break(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
+    def run_given_test(self, style, test, answer):
+        
+        if style == 4:
+            results_best,results_worst = self.FourTeams.get_Break(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
+        else:
+            results_best,results_worst = self.TwoTeams.get_Break(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
+
+
 
         print("RESULTS")
         print("EXPECTED")
@@ -44,23 +51,34 @@ class AlgorithmTests(unittest.TestCase):
     def test_ubciv_2019(self):
         test = {"teams":40,"breaking":8,"rounds":5}
         answer = {"guranteed_break":11, "speaks_break":10, "breaking_on_speaks":2}
-        self.run_four_teams(test,answer)
+        self.run_given_test(4,test,answer)
     
     def test_hhiv_2018(self):
         test = {"teams":101,"breaking":16,"rounds":5}
         answer = {"guranteed_break":11, "speaks_break":10, "breaking_on_speaks":3}
-        self.run_four_teams(test,answer)
+        self.run_given_test(4,test,answer)
     
     @unittest.expectedFailure
     def test_wudc_2019(self):
         test = {"teams":267,"breaking":48,"rounds":9}
         answer = {"guranteed_break":18, "speaks_break":17, "breaking_on_speaks":16}
-        self.run_four_teams(test,answer)
+        self.run_given_test(4,test,answer)
     
     def test_hugill_2019(self):
         test = {"teams":32,"breaking":8,"rounds":5}
         answer = {"guranteed_break":10, "speaks_break":9, "breaking_on_speaks":1}
-        self.run_four_teams(test,answer)
+        self.run_given_test(4,test,answer)
+    
+    def test_hugill_2019(self):
+        test = {"teams":32,"breaking":8,"rounds":5}
+        answer = {"guranteed_break":10, "speaks_break":9, "breaking_on_speaks":1}
+        self.run_given_test(4,test,answer)
+    
+    def test_cpnats_2018(self):
+        test = {"teams":28,"breaking":8,"rounds":6}
+        answer = {"guranteed_break":5, "speaks_break":5, "breaking_on_speaks":4}
+        self.run_given_test(2,test,answer)
+
 
     
 
