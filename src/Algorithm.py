@@ -51,6 +51,11 @@ class FourTeams:
 
             tournament_best.sort()
             tournament_worst.sort()
+
+        print("TOURNAMENT BEST")
+        print(tournament_best)
+        print("TOURNAMENT WORST")
+        print(tournament_worst)
         
         results_best = self.get_results(tournament=tournament_best,teams=teams,breaking=breaking)
         results_worst = self.get_results(tournament=tournament_worst,teams=teams,breaking=breaking)
@@ -99,10 +104,9 @@ class FourTeams:
         # bug if there is no guranteed break point
         num_speaks_break = 0
         i = break_index
-        count = 0
         while i < len(tournament) and results['speaks_break'] == tournament[i]:
             i += 1
-            count += 1
+            num_speaks_break += 1
         results['breaking_on_speaks'] = num_speaks_break
 
         total_speaks_break = 0
