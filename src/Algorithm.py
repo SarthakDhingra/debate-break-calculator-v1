@@ -56,10 +56,11 @@ class Tournament:
             tournament_best.sort()
             tournament_worst.sort()
 
-        print("TOURNAMENT BEST")
-        print(tournament_best)
-        print("TOURNAMENT WORST")
-        print(tournament_worst)
+        
+        # print("TOURNAMENT BEST")
+        # print(tournament_best)
+        # print("TOURNAMENT WORST")
+        # print(tournament_worst)
         
         results_best = self.get_results(tournament=tournament_best,teams=teams,breaking=breaking)
         results_worst = self.get_results(tournament=tournament_worst,teams=teams,breaking=breaking)
