@@ -18,9 +18,17 @@ def hello():
     teams = request.form.get("teams", None)
     rounds = request.form.get("rounds", None)
     breaking = request.form.get("breaking", None)
-
-
-    print("TEAMS")
-    print(teams)
-    return render_template('form.html')
+    style = request.form.get("tournament", None)
+    results_best = None 
+    results_worst = None
+    if teams and rounds and breaking and style:
+        style = 2 if style == "Two Teams" else 4
+        tournament = Tournament(style)
+        results_best, results_worst = tournament.get_Break(teams=int(teams),rounds=int(rounds),breaking=int(breaking))
+        print("RESULTS")
+        print(results_best)
+        print(results_worst)
+    
+    return render_template('form.html',results_best=results_best, results_worst=results_worst)
+    
 
