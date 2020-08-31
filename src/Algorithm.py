@@ -44,7 +44,6 @@ class Tournament:
                     # pull ups lose
 
                     for i in range(1,self.style):
-                        print(i)
                         tournament_best[team+i] += i
                         tournament_worst[team + i - 1] += self.team_map[i-1]
 

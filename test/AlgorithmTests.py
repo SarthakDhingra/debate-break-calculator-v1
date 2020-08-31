@@ -24,13 +24,13 @@ class AlgorithmTests(unittest.TestCase):
 
 
 
-        print("RESULTS")
-        print("EXPECTED")
-        print(answer)
-        print("RESULTS BEST")
-        print(results_best)
-        print("RESUTLS WORST")
-        print(results_worst)
+        # print("RESULTS")
+        # print("EXPECTED")
+        # print(answer)
+        # print("RESULTS BEST")
+        # print(results_best)
+        # print("RESUTLS WORST")
+        # print(results_worst)
 
         # Guranteed Break Point "guranteed_break"
         # Break Point "break_speaks"
