@@ -25,7 +25,7 @@ class Tournament:
         if rounds < 1 or rounds > 9:
             raise ValueError('bad rounds')
         
-        if breaking % 4 != 0:
+        if breaking % self.style != 0:
             raise ValueError('bad break')
 
         if teams <= breaking:
