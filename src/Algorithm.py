@@ -22,14 +22,14 @@ class Tournament:
 
     def get_Break(self,teams,breaking,rounds):
 
-        if rounds < 1 or rounds > 9:
-            raise ValueError('bad rounds')
+        # if rounds < 1 or rounds > 9:
+        #     return 
         
-        if breaking % self.style != 0:
-            raise ValueError('bad break')
+        # if breaking % self.style != 0:
+        #     raise ValueError('bad break')
 
-        if teams <= breaking:
-            return "All teams break"
+        # if teams <= breaking:
+        #     return "All teams break"
 
         # make teams divisible by 4
         while(teams% self.style != 0):

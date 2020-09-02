@@ -13,11 +13,11 @@
     <form id="form" method="GET" action="/">
         <div>
           <label>Number of Teams </label>
-          <input type="text" name="teams" required><br>
+          <input type="number" name="teams" required {% if teams %} value={{teams}} {% endif %}><br>
           <label>Number of Rounds </label>
-          <input type="text" name="rounds" required><br>
+          <input type="text" name="rounds" {% if rounds %} value={{rounds}} {% endif %}><br>
           <label>Number Breaking to OutRounds</label> 
-          <input type="text" name="breaking" required><br>
+          <input type="text" name="breaking" required {% if breaking %} value={{breaking}} {% endif %}><br>
         </div>
       <div class="button">
         <input type="submit" name="tournament" value="Two Teams">
