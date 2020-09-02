@@ -15,9 +15,9 @@
           <label>Number of Teams </label>
           <input type="number" name="teams" required {% if teams %} value={{teams}} {% endif %}><br>
           <label>Number of Rounds </label>
-          <input type="text" name="rounds" {% if rounds %} value={{rounds}} {% endif %}><br>
+          <input type="number" name="rounds" required {% if rounds %} value={{rounds}} {% endif %}><br>
           <label>Number Breaking to OutRounds</label> 
-          <input type="text" name="breaking" required {% if breaking %} value={{breaking}} {% endif %}><br>
+          <input type="number" name="breaking" required {% if breaking %} value={{breaking}} {% endif %}><br>
         </div>
       <div class="button">
         <input type="submit" name="tournament" value="Two Teams">
