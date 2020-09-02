@@ -7,18 +7,37 @@
     <link rel="stylesheet" href="../static/form.css">
   </head>
 
+  <h3>DebateBreaker</h3>
+
   <body>
-    <form id="form" method="POST" action="/">
-        <div class = "centered">
-          Number of Teams <input type="text" name="teams" required><br>
-          Number of Rounds <input type="text" name="rounds" required><br>
-          Number Breaking to OutRounds <input type="text" name="breaking" required><br>
+    <form id="form" method="GET" action="/">
+        <div>
+          <label>Number of Teams </label>
+          <input type="text" name="teams" required><br>
+          <label>Number of Rounds </label>
+          <input type="text" name="rounds" required><br>
+          <label>Number Breaking to OutRounds</label> 
+          <input type="text" name="breaking" required><br>
         </div>
       <div class="button">
         <input type="submit" name="tournament" value="Two Teams">
         <input type="submit" name="tournament" value="Four Teams">
       </div>
     </form>
+    <br>
+    <br>
+    <br>
+    {% if results_best and results_worst%}
+    <table style="width:100%">
+      <tr>
+        <th>Best Case Scenario</th>
+        <th>Worst Case Scenario</th>
+      </tr>
+        <tr>
+          <td>All teams on {{results_best["guranteed_break"]}} points will break. {{results_best["breaking_on_speaks"]}} out of {{results_best["total_on_speaks"]}} teams on {{results_best["speaks_break"]}} points will break</td>
+          <td>All teams on {{results_worst["guranteed_break"]}} points will break. {{results_worst["breaking_on_speaks"]}} out of {{results_worst["total_on_speaks"]}} teams on {{results_worst["speaks_break"]}} points will break</td>
+        </tr>
+    </table>
+    {% endif %}
   </body>
-
 </html>
