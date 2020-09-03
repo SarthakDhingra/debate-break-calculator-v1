@@ -17,69 +17,51 @@ class Breaking(object):
 
     def __call__(self, form, field):
         breaking = int(field.data)
-        print("FORM")
         if form.style is not None:
             if breaking % form.style != 0:
-                raise ValidationError(self.message)          
+                raise ValidationError(self.message)
 
 class BreakForm(Form):
+
     rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Invalid Rounds. Must be between 1 and 9 inclusive")])
     breaking = StringField('breaking', validators=[Breaking(message="Number Breaking is not divisible by Style")])   
 
-# a simple page that says hello
 @app.route('/', methods=['POST','GET'])
-# @app.route('/home', methods=['POST','GET'])
-def hello():
+def root():
 
-    print(f"ARGS = {request.args}\n")
-
-
-    if request.method == "POST":
-        print("HERE 1")
-        pass
-    elif request.method == "GET":
-        print("HERE 2")
-        pass
-
-
-
-    results_best = request.args.get("best", None)
-    results_worst = request.args.get("worst", None)
-
-    if results_best is not None and results_worst is not None:
-        results_best = ast.literal_eval(results_best)
-        results_worst = ast.literal_eval(results_worst)
-
-    teams = request.args.get("teams", None)
-    rounds = request.args.get("rounds", None)
-    breaking = request.args.get("breaking", None)
-    style = request.args.get("tournament", None)
+    teams = request.form.get("teams", None)
+    rounds = request.form.get("rounds", None)
+    breaking = request.form.get("breaking", None)
+    style = request.form.get("tournament", None)
 
     if style is not None:
         style = 2 if style == "Two Teams" else 4
 
     form = BreakForm(request.args)
     form.style = style
-    # form = BreakForm(data={'breaking': 7})
 
-    # only want form.validate() in the future
-    print(f"VALIDATION = {form.validate()}\n")
     if teams and rounds and breaking and style and form.validate():   
-
-        # get input information
         tournament = Tournament(style)
         results_best, results_worst = tournament.get_Break(teams=int(teams),rounds=int(rounds),breaking=int(breaking))
+        return redirect(url_for('results',best=results_best,worst=results_worst, teams=teams, rounds=rounds, breaking=breaking))
 
-        print(f"RESULTS BEST = {results_best}\n")
-        print(f"RESULTS WORST = {results_worst}\n")
+    return render_template('form.html', form=form)
 
-        return redirect(url_for('hello',best=results_best,worst=results_worst, teams=teams, rounds=rounds, breaking=breaking))
+@app.route('/results', methods=['GET'])
+def results():
+    results_best = request.args.get("best", None)
+    results_worst = request.args.get("worst", None)
+
+    if results_best is not None and results_worst is not None:
+        results_best = ast.literal_eval(results_best)
+        results_worst = ast.literal_eval(results_worst)
     
-    print(f"FORM INFORMATION {form}")
-    print(f"FORM ERRORS {form.errors}")
-    # print(form.rounds.errors)
-
-    return render_template('form.html',results_best=results_best, results_worst=results_worst, teams=teams, rounds=rounds, breaking=breaking, form=form)
+    teams = request.args.get("teams", None)
+    rounds = request.args.get("rounds", None)
+    breaking = request.args.get("breaking", None)
+    style = request.args.get("tournament", None)
+    
+    return render_template('form.html', results_best=results_best, results_worst=results_worst, teams=teams, rounds=rounds, breaking=breaking)
 
 
 if __name__ == '__main__':

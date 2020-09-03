@@ -10,7 +10,7 @@
   <h3>DebateBreaker</h3>
 
   <body>
-    <form id="form" method="GET" action="/">
+    <form id="form" method="POST" action="/">
         <div>
           <label>Number of Teams </label>
           <input type="number" name="teams" required {% if teams %} value={{teams}} {% endif %}><br>
@@ -28,9 +28,11 @@
     <br>
     <br>
 
-    {% for key,value in form.errors.items() %}
-      <div class="error">{{value[0]}}</div>
-    {% endfor %}
+    {% if form %}
+      {% for key,value in form.errors.items() %}
+        <div class="error">{{value[0]}}</div>
+      {% endfor %}
+    {% endif %}
     
     {% if results_best and results_worst%}
     <table style="width:100%">
