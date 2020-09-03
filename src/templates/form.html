@@ -27,6 +27,11 @@
     <br>
     <br>
     <br>
+
+    {% for key,value in form.errors.items() %}
+      <div class="error">{{value[0]}}</div>
+    {% endfor %}
+    
     {% if results_best and results_worst%}
     <table style="width:100%">
       <tr>

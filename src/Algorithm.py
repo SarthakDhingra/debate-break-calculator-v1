@@ -31,6 +31,12 @@ class Tournament:
         # if teams <= breaking:
         #     return "All teams break"
 
+
+        print("ALGORITHM")
+        print(teams)
+        print(breaking)
+        print(rounds)
+
         # make teams divisible by 4
         while(teams% self.style != 0):
             teams += 1

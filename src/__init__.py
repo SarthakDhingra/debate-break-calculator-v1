@@ -1,83 +1,92 @@
-
 import sys
 import os
-import ast
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
+import ast
 from flask import Flask, render_template, request, redirect, url_for
-from Algorithm import Tournament
 from wtforms import IntegerField, Form, StringField
 from wtforms.validators import NumberRange, DataRequired, ValidationError
+from Algorithm import Tournament
 
-def DisibleBy(breaking,style,message):
-    if breaking % style != 0:
-        raise ValidationError(message)
-    
-
-
-class BreakForm(Form, style):
-    rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Invalid Rounds. Must be between 1 and 9 inclusive")])
-    rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Invalid Rounds. Must be between 1 and 9 inclusive")])
-    if style is not None:
-        breaking = IntegerField('rounds', validators=[DivisbleBy(breaking=,max=9, message="Invalid Rounds. Must be between 1 and 9 inclusive")])
-
-    
 app = Flask(__name__)
-app.run(debug=True)
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
+
+class Breaking(object):
+    def __init__(self, message=None):
+        self.message=message
+
+    def __call__(self, form, field):
+        breaking = int(field.data)
+        print("FORM")
+        if form.style is not None:
+            if breaking % form.style != 0:
+                raise ValidationError(self.message)          
+
+class BreakForm(Form):
+    rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Invalid Rounds. Must be between 1 and 9 inclusive")])
+    breaking = StringField('breaking', validators=[Breaking(message="Number Breaking is not divisible by Style")])   
 
 # a simple page that says hello
 @app.route('/', methods=['POST','GET'])
 # @app.route('/home', methods=['POST','GET'])
 def hello():
 
-    print("ARGS")
-    print(request.args)
-    print()
+    print(f"ARGS = {request.args}\n")
+
+
+    if request.method == "POST":
+        print("HERE 1")
+        pass
+    elif request.method == "GET":
+        print("HERE 2")
+        pass
+
+
 
     results_best = request.args.get("best", None)
     results_worst = request.args.get("worst", None)
 
-    if results_best is not None:
+    if results_best is not None and results_worst is not None:
         results_best = ast.literal_eval(results_best)
-    
-    if results_worst is not None:
         results_worst = ast.literal_eval(results_worst)
-    
+
     teams = request.args.get("teams", None)
     rounds = request.args.get("rounds", None)
     breaking = request.args.get("breaking", None)
     style = request.args.get("tournament", None)
+
     if style is not None:
         style = 2 if style == "Two Teams" else 4
 
-    form = BreakForm(request.args,style)
+    form = BreakForm(request.args)
+    form.style = style
+    # form = BreakForm(data={'breaking': 7})
 
-    if form.validate():
-        
-        print("SUCCESS")
-        
+    # only want form.validate() in the future
+    print(f"VALIDATION = {form.validate()}\n")
+    if teams and rounds and breaking and style and form.validate():   
+
         # get input information
-
-            
         tournament = Tournament(style)
         results_best, results_worst = tournament.get_Break(teams=int(teams),rounds=int(rounds),breaking=int(breaking))
-        print()
-        print("RESULTS")
-        print(results_best)
-        print(results_worst)
-        print()
+
+        print(f"RESULTS BEST = {results_best}\n")
+        print(f"RESULTS WORST = {results_worst}\n")
+
         return redirect(url_for('hello',best=results_best,worst=results_worst, teams=teams, rounds=rounds, breaking=breaking))
     
-    print("FORM INFORMATION")
-    print(form)
-    print(form.errors)
+    print(f"FORM INFORMATION {form}")
+    print(f"FORM ERRORS {form.errors}")
+    # print(form.rounds.errors)
 
-    
     return render_template('form.html',results_best=results_best, results_worst=results_worst, teams=teams, rounds=rounds, breaking=breaking, form=form)
-    
+
+
+if __name__ == '__main__':
+    SECRET_KEY = os.urandom(32)
+    app.config['SECRET_KEY'] = SECRET_KEY
+    app.run(debug=True)
+
 
     
 
