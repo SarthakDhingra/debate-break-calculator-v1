@@ -22,8 +22,7 @@ class Breaking(object):
                 raise ValidationError(self.message)
 
 class BreakForm(Form):
-
-    rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Invalid Rounds. Must be between 1 and 9 inclusive")])
+    rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Rounds must be an integer between 1 and 9 inclusive")])
     breaking = StringField('breaking', validators=[Breaking(message="Number Breaking is not divisible by Style")])   
 
 @app.route('/', methods=['POST','GET'])
@@ -32,12 +31,12 @@ def root():
     teams = request.form.get("teams", None)
     rounds = request.form.get("rounds", None)
     breaking = request.form.get("breaking", None)
-    style = request.form.get("tournament", None)
+    style = request.form.get("style", None)
 
     if style is not None:
-        style = 2 if style == "Two Teams" else 4
+        style = int(style)
 
-    form = BreakForm(request.args)
+    form = BreakForm(request.form)
     form.style = style
 
     if teams and rounds and breaking and style and form.validate():   
@@ -45,7 +44,7 @@ def root():
         results_best, results_worst = tournament.get_Break(teams=int(teams),rounds=int(rounds),breaking=int(breaking))
         return redirect(url_for('results',best=results_best,worst=results_worst, teams=teams, rounds=rounds, breaking=breaking))
 
-    return render_template('form.html', form=form)
+    return render_template('form.html', form=form, teams=teams, rounds=rounds, breaking=breaking)
 
 @app.route('/results', methods=['GET'])
 def results():
