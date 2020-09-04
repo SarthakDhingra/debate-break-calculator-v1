@@ -6,6 +6,9 @@ from math import floor, ceil
 
 class Tournament:
 
+    # ASSUMPTIONS
+    # Tournament is bracketed
+
     def __init__(self, style, verbose=False):
         self.verbose = verbose
         self.style = style

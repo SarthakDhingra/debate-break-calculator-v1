@@ -27,13 +27,13 @@ class AlgorithmTests(unittest.TestCase):
         print(f"RESULTS BEST = {results_best}")
         print(f"RESULTS WORST = {results_worst}\n")
 
-        self.assertLessEqual(results_best["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT BEST\n Expected: {answer}\n Result:{results_best}")
-        self.assertLessEqual(results_best['speaks_break'], answer["speaks_break"],f"\nFAILRESULT BEST\n Expected: {answer}\n Result:{results_best}")
+        self.assertLessEqual(results_best["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT BEST GURANTEED\n Expected: {answer}\n Result:{results_best}")
+        self.assertLessEqual(results_best['speaks_break'], answer["speaks_break"],f"\nFAILRESULT BEST SPEAKS\n Expected: {answer}\n Result:{results_best}")
         if results_best['speaks_break'] == answer["speaks_break"]:
             self.assertLessEqual(answer["breaking_on_speaks"], results_best["breaking_on_speaks"], f"\nFAIL RESULT BEST\n Expected: {answer}\n Result:{results_best}")
         
-        self.assertGreaterEqual(results_worst["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT WORST\n Expected: {answer}\n Result:{results_worst}")
-        self.assertGreaterEqual(results_worst['speaks_break'], answer["speaks_break"],f"\nFAIL RESULT WORST\n Expected: {answer}\n Result:{results_worst}")
+        self.assertGreaterEqual(results_worst["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT WORST GURANTEED\n Expected: {answer}\n Result:{results_worst}")
+        self.assertGreaterEqual(results_worst['speaks_break'], answer["speaks_break"],f"\nFAIL RESULT WORST SPEAKS\n Expected: {answer}\n Result:{results_worst}")
         if results_worst['speaks_break'] == answer["speaks_break"]:
             self.assertGreaterEqual(answer["breaking_on_speaks"], results_worst["breaking_on_speaks"], f"\nFAIL RESULT WORST\n Expected: {answer}\n Result:{results_worst}")
     
@@ -52,24 +52,43 @@ class AlgorithmTests(unittest.TestCase):
         answer = {"guranteed_break":11, "speaks_break":10, "breaking_on_speaks":3}
         self.run_given_test(4,test,answer)
     
-    # @unittest.expectedFailure
     def test_wudc_2019(self):
         test = {"teams":267,"breaking":48,"rounds":9}
         answer = {"guranteed_break":18, "speaks_break":17, "breaking_on_speaks":16}
         self.run_given_test(4,test,answer)
     
-
-    # @unittest.expectedFailure
+    @unittest.expectedFailure
     def test_cpnats_2018(self):
         test = {"teams":28,"breaking":8,"rounds":6}
         answer = {"guranteed_break":5, "speaks_break":5, "breaking_on_speaks":4}
         self.run_given_test(2,test,answer)
     
-    # @unittest.expectedFailure
     def test_cpproam_2018(self):
         test = {"teams":12,"breaking":4,"rounds":4}
         answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":4}
         self.run_given_test(2,test,answer)
+    
+    def test_cpproam_2019(self):
+        test = {"teams":14,"breaking":4,"rounds":4}
+        answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":3}
+        self.run_given_test(2,test,answer)
+    
+    def test_australs_2020(self):
+        test = {"teams":24,"breaking":8,"rounds":4}
+        answer = {"guranteed_break":3, "speaks_break":2, "breaking_on_speaks":1}
+        self.run_given_test(2,test,answer)
+    
+    def test_mcgoun_2019(self):
+        test = {"teams":12,"breaking":4,"rounds":5}
+        answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":3}
+        self.run_given_test(2,test,answer)
+    
+    def test_cpnats_2020(self):
+        test = {"teams":23,"breaking":8,"rounds":6}
+        answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":1}
+        self.run_given_test(2,test,answer)
+
+    
     
 
 if __name__ == '__main__':
