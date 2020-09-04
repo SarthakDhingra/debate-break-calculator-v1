@@ -4,8 +4,9 @@ import numpy as np
 from math import floor, ceil
 np.set_printoptions(linewidth=300)
 
-# TOURNAMENT ASSUMPTIONS:
+# ASSUMPTIONS:
 # Tournament is bracketed
+
 class Tournament:
     def __init__(self, style, verbose=False):
         self.verbose = verbose
@@ -17,14 +18,17 @@ class Tournament:
         if teams <= breaking:
             return "All Teams Break", "All Teams Break"
 
+        # max points a team can get in the tournament
         max_points = rounds*(self.round_point_max)
 
+        # simulate tournament
         tournament = [[0 for i in range(max_points+1)] for i in range(rounds)]
         self.fill_data(tournament, rounds, teams)
 
         if self.verbose:
             print(np.array(tournament))
         
+        # get best and worst case break results
         results_best = self.get_results(tournament=tournament[-1], teams=teams, breaking=breaking, case="BEST")
         results_worst = self.get_results(tournament=tournament[-1], teams=teams, breaking=breaking, case="WORST")
 
@@ -37,17 +41,17 @@ class Tournament:
         return results_best, results_worst
     
     def fill_data(self, tournament, rounds, teams):
-        # Simulate a tournament using a 2D matrix where:
-            # each row represents the round (.e. row 0 is round 1, row 1 is round 2, etc.)
-            # each column represents a number of points (column 0 = 0 points, column 1 = 1 point, etc.)
-            # each cell value represents the number of teams after round (row # + 1) on column number of points 
+        # Simulate a tournament (2D array) where:
+            # a row represents the round (.e. row 0 is round 1, row 1 is round 2, etc.)
+            # a column represents a point number (column 0 = 0 points, column 1 = 1 point, etc.)
+            # a cell value represents the number of teams after that round (row # + 1) on column number of points 
             # (i.e. tournament[3][5] represents the number of teams after round 3 on 5 points)
         
-        # complete round 1
+        # simulate round 1
         for i in range(self.style):
             tournament[0][i] = teams / self.style
 
-        # Fill out rest of tournament starting from round 2
+        # simulate rest of tournament
         for round in range(1, rounds):
             round_max = (round+1)*self.round_point_max
             for point in range(round_max+1):
@@ -65,11 +69,14 @@ class Tournament:
         
         if self.verbose:
             print(f"TOURANEMNT={tournament}")
-
-        results = {}
-        teams_broke = 0
-        teams_broke_prev = 0
+        
+        
+        results = {} 
         point = len(tournament)-1
+        # counter for total teams that have succesfully broken
+        teams_broke = 0 
+        # counter for total teams that have succesfully broken on the guranteed break point or higher
+        teams_broke_prev = 0
 
         while teams_broke < breaking:
             teams_broke_prev = teams_broke
