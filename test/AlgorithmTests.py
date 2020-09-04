@@ -78,10 +78,6 @@ class AlgorithmTests(unittest.TestCase):
         test = {"teams":28,"breaking":8,"rounds":6}
         answer = {"guranteed_break":5, "speaks_break":5, "breaking_on_speaks":4}
         self.run_given_test(2,test,answer)
-
-
-    
-
     
 
 if __name__ == '__main__':

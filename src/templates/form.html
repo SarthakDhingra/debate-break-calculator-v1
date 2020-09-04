@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debate Break Calculator</title>
+    <link rel="stylesheet" href="../static/form.css">
+  </head>
+
+  <h3>DebateBreaker</h3>
+
+  <body>
+    <form id="form" method="POST" action="/">
+        <div>
+          <label>Number of Teams </label>
+          <input type="number" name="teams" required {% if teams %} value={{teams}} {% endif %}><br>
+          <label>Number of Rounds </label>
+          <input type="number" name="rounds" required {% if rounds %} value={{rounds}} {% endif %}><br>
+          <label>Number Breaking to OutRounds</label> 
+          <input type="number" name="breaking" required {% if breaking %} value={{breaking}} {% endif %}><br>
+        </div>
+      <div class="button">
+        <button name="style" value=2 type="submit">Two Teams</button>
+        <button name="style" value=4 type="submit">Four Teams</button>
+        <!-- <input type="submit" name="tournament" value="Two Teams">
+        <input type="submit" name="tournament" value="Four Teams"> -->
+      </div>
+    </form>
+    <br>
+    <br>
+    <br>
+    {% if form %}
+      {% for key,value in form.errors.items() %}
+        <div class="error">{{value[0]}}</div>
+      {% endfor %}
+    {% endif %}
+    
+    {% if results_best and results_worst%}
+    <table style="width:100%">
+      {% if results_best == "All Teams Break" and results_worst == "All Teams Break" %}
+      <tr>
+        <th>All Teams Break</th>
+      </tr>
+      {% else %}
+      <tr>
+        <th>Best Case Scenario</th>
+        <th>Worst Case Scenario</th>
+      </tr>
+      <tr>
+        <td>{{results_best}}</td>
+        <td>{{results_worst}}</td>
+      </tr>
+      {% endif %}
+    </table>
+    {% endif %}
+  </body>
+</html>
