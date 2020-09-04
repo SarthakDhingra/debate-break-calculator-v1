@@ -4,12 +4,12 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
 from flask import Flask, render_template, request, redirect, url_for
-from wtforms import IntegerField, Form, StringField
-from wtforms.validators import NumberRange, DataRequired, ValidationError
+from wtforms import IntegerField, Form
+from wtforms.validators import NumberRange, ValidationError
 from Algorithm import Tournament
 
-
-class Breaking(object):
+# custom form validator to validate number of teams breaking
+class BreakingValidator(object):
     def __init__(self, message=None):
         self.message=message
 
@@ -19,9 +19,10 @@ class Breaking(object):
             if breaking % form.style != 0:
                 raise ValidationError(self.message)
 
+# form validaton
 class BreakForm(Form):
     rounds = IntegerField('rounds', validators=[NumberRange(min=1,max=9, message="Rounds must be an integer between 1 and 9 inclusive")])
-    breaking = StringField('breaking', validators=[Breaking(message="Number Breaking is not divisible by Style")])   
+    breaking = IntegerField('breaking', validators=[BreakingValidator(message="Number Breaking is not divisible by Style")])   
 
 def create_app():
     app = Flask(__name__)
@@ -30,10 +31,10 @@ def create_app():
     @app.route('/', methods=['POST','GET'])
     def root():
 
-        teams = request.form.get("teams", None)
-        rounds = request.form.get("rounds", None)
-        breaking = request.form.get("breaking", None)
-        style = request.form.get("style", None)
+        teams = request.form.get("teams")
+        rounds = request.form.get("rounds")
+        breaking = request.form.get("breaking")
+        style = request.form.get("style")
 
         if style is not None:
             style = int(style)
@@ -50,13 +51,12 @@ def create_app():
 
     @app.route('/results', methods=['GET'])
     def results():
-        results_best = request.args.get("best", None)
-        results_worst = request.args.get("worst", None)
-        
-        teams = request.args.get("teams", None)
-        rounds = request.args.get("rounds", None)
-        breaking = request.args.get("breaking", None)
-        style = request.args.get("tournament", None)
+        results_best = request.args.get("best")
+        results_worst = request.args.get("worst")
+        teams = request.args.get("teams")
+        rounds = request.args.get("rounds")
+        breaking = request.args.get("breaking")
+        style = request.args.get("tournament")
         
         return render_template('form.html', results_best=results_best, results_worst=results_worst, teams=teams, rounds=rounds, breaking=breaking)
     
