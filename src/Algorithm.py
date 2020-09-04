@@ -3,16 +3,6 @@
 import numpy as np
 np.set_printoptions(linewidth=300)
 
-# WORST CASE
-# add up all rounded up points for that round
-# the highest point while it still smaller than number breaking is guranteed break
-# the point after is the cut off
-# the number breaking from this is (x - summation of all points until guranteed break) out of R where R can be ceil or floor of cutoff number
-# have to explain why R can either or if its best case, why not ceil (because there are break cases )
-
-# BEST CASE
-# same but with rounded down
-
 class Tournament:
 
     def __init__(self, style, verbose=False):
@@ -35,16 +25,9 @@ class Tournament:
         for round in range(rounds):
             for team in range(0,teams):
                 if (team % self.style == 0):
-                    # pull ups lose
-
                     for i in range(1,self.style):
                         tournament_best[team+i] += i
                         tournament_worst[team + i - 1] += self.team_map[i-1]
-
-                    # pull ups win
-                    # tournament_worst[team] += 3
-                    # tournament_worst[team+1] += 2
-                    # tournament_worst[team+2] += 1
 
             tournament_best.sort()
             tournament_worst.sort()
@@ -66,21 +49,6 @@ class Tournament:
         return results_best, results_worst
 
     def get_results(self,tournament,teams,breaking):
-        # WANT
-        # Guranteed Break Point "guranteed_break"
-        # Break Point "break_speaks"
-        # number breaking on break point "breaking_speaks"
-        # total on break point "total_break_point"
-
-        #TWO CASES
-        # CASE 1
-        # last breaking team is guranteed break
-        # CASE 2
-        # last breaking team breaks on speaks
-
-        #
-
-        # instead of -break, should use break_index = len(tournament) - breaking
         break_index = len(tournament) - breaking
 
         points = []
