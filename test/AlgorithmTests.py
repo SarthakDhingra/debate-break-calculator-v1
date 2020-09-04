@@ -21,11 +21,12 @@ class AlgorithmTests(unittest.TestCase):
             results_best,results_worst = self.FourTeams.get_Break(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
         else:
             results_best,results_worst = self.TwoTeams.get_Break(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
-            
-        print("RESULTS\n")
-        print(f"EXPECTED = {answer}")
-        print(f"RESULTS BEST = {results_best}")
-        print(f"RESULTS WORST = {results_worst}\n")
+        
+        if self.verbose:
+            print("RESULTS\n")
+            print(f"EXPECTED = {answer}")
+            print(f"RESULTS BEST = {results_best}")
+            print(f"RESULTS WORST = {results_worst}\n")
 
         self.assertLessEqual(results_best["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT BEST GURANTEED\n Expected: {answer}\n Result:{results_best}")
         self.assertLessEqual(results_best['speaks_break'], answer["speaks_break"],f"\nFAILRESULT BEST SPEAKS\n Expected: {answer}\n Result:{results_best}")
@@ -87,9 +88,6 @@ class AlgorithmTests(unittest.TestCase):
         test = {"teams":23,"breaking":8,"rounds":6}
         answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":1}
         self.run_given_test(2,test,answer)
-
-    
-    
 
 if __name__ == '__main__':
 
