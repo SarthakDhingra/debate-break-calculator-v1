@@ -10,4 +10,4 @@
 - Handle Edge Cases
     - No Guranteed Break
     - Only one round (already done I think)
-- Fix form resubmission error (should probably use post --> redirect --> get pattern)
+- Fix form resubmission error for refresh after invalid input (should probably use post --> redirect --> get pattern)
