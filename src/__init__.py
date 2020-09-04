@@ -3,7 +3,6 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-import ast
 from flask import Flask, render_template, request, redirect, url_for
 from wtforms import IntegerField, Form, StringField
 from wtforms.validators import NumberRange, DataRequired, ValidationError
@@ -26,6 +25,7 @@ class BreakForm(Form):
 
 def create_app():
     app = Flask(__name__)
+    app.debug = True
 
     @app.route('/', methods=['POST','GET'])
     def root():
@@ -43,7 +43,7 @@ def create_app():
 
         if teams and rounds and breaking and style and form.validate():   
             tournament = Tournament(style)
-            results_best, results_worst = tournament.get_Break(teams=int(teams),rounds=int(rounds),breaking=int(breaking))
+            results_best, results_worst = tournament.get_Break(teams=int(teams),rounds=int(rounds),breaking=int(breaking),convert_string=True)
             return redirect(url_for('results',best=results_best,worst=results_worst, teams=teams, rounds=rounds, breaking=breaking))
 
         return render_template('form.html', form=form, teams=teams, rounds=rounds, breaking=breaking)
@@ -52,10 +52,6 @@ def create_app():
     def results():
         results_best = request.args.get("best", None)
         results_worst = request.args.get("worst", None)
-
-        if results_best is not None and results_worst is not None:
-            results_best = ast.literal_eval(results_best)
-            results_worst = ast.literal_eval(results_worst)
         
         teams = request.args.get("teams", None)
         rounds = request.args.get("rounds", None)

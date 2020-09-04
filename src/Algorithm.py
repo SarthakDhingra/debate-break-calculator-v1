@@ -20,22 +20,10 @@ class Tournament:
         self.style = style
         self.team_map = {0:3,1:2,2:1}
 
-    def get_Break(self,teams,breaking,rounds):
+    def get_Break(self,teams,breaking,rounds,convert_string=False):
 
-        # if rounds < 1 or rounds > 9:
-        #     return 
-        
-        # if breaking % self.style != 0:
-        #     raise ValueError('bad break')
-
-        # if teams <= breaking:
-        #     return "All teams break"
-
-
-        print("ALGORITHM")
-        print(teams)
-        print(breaking)
-        print(rounds)
+        if teams <= breaking:
+            return "All Teams Break", "All Teams Break"
 
         # make teams divisible by 4
         while(teams% self.style != 0):
@@ -69,6 +57,11 @@ class Tournament:
         
         results_best = self.get_results(tournament=tournament_best,teams=teams,breaking=breaking)
         results_worst = self.get_results(tournament=tournament_worst,teams=teams,breaking=breaking)
+
+        if convert_string:
+            results_best = f"All teams on {results_best.get('guranteed_break')} points will break. {results_best.get('breaking_on_speaks')} out of {results_best.get('total_on_speaks')} teams on {results_best.get('speaks_break')} points will break"
+            results_worst = f"All teams on {results_worst.get('guranteed_break')} points will break. {results_worst.get('breaking_on_speaks')} out of {results_worst.get('total_on_speaks')} teams on {results_worst.get('speaks_break')} points will break"
+          
 
         return results_best, results_worst
 

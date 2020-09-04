@@ -29,7 +29,6 @@
     <br>
     <br>
     <br>
-
     {% if form %}
       {% for key,value in form.errors.items() %}
         <div class="error">{{value[0]}}</div>
@@ -38,14 +37,20 @@
     
     {% if results_best and results_worst%}
     <table style="width:100%">
+      {% if results_best == "All Teams Break" and results_worst == "All Teams Break" %}
+      <tr>
+        <th>All Teams Break</th>
+      </tr>
+      {% else %}
       <tr>
         <th>Best Case Scenario</th>
         <th>Worst Case Scenario</th>
       </tr>
-        <tr>
-          <td>All teams on {{results_best["guranteed_break"]}} points will break. {{results_best["breaking_on_speaks"]}} out of {{results_best["total_on_speaks"]}} teams on {{results_best["speaks_break"]}} points will break</td>
-          <td>All teams on {{results_worst["guranteed_break"]}} points will break. {{results_worst["breaking_on_speaks"]}} out of {{results_worst["total_on_speaks"]}} teams on {{results_worst["speaks_break"]}} points will break</td>
-        </tr>
+      <tr>
+        <td>{{results_best}}</td>
+        <td>{{results_worst}}</td>
+      </tr>
+      {% endif %}
     </table>
     {% endif %}
   </body>
