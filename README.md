@@ -1,6 +1,6 @@
 # debate-break-calculator
 
-### TO RUN
+### HOW TO RUN PROGRAM
 - make sure you have python3 and virtualenv installed
-- run setup.sh
-- flask run
+- run 'setup.sh' in the root folder
+- run 'flask run' in the root folder
