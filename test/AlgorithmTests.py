@@ -60,16 +60,16 @@ class AlgorithmTests(unittest.TestCase):
     
 
     # @unittest.expectedFailure
-    # def test_cpnats_2018(self):
-    #     test = {"teams":28,"breaking":8,"rounds":6}
-    #     answer = {"guranteed_break":5, "speaks_break":5, "breaking_on_speaks":4}
-    #     self.run_given_test(2,test,answer)
+    def test_cpnats_2018(self):
+        test = {"teams":28,"breaking":8,"rounds":6}
+        answer = {"guranteed_break":5, "speaks_break":5, "breaking_on_speaks":4}
+        self.run_given_test(2,test,answer)
     
     # @unittest.expectedFailure
-    # def test_cpproam_2018(self):
-    #     test = {"teams":12,"breaking":4,"rounds":4}
-    #     answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":4}
-    #     self.run_given_test(2,test,answer)
+    def test_cpproam_2018(self):
+        test = {"teams":12,"breaking":4,"rounds":4}
+        answer = {"guranteed_break":4, "speaks_break":3, "breaking_on_speaks":4}
+        self.run_given_test(2,test,answer)
     
 
 if __name__ == '__main__':

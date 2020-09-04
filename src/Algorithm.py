@@ -9,33 +9,27 @@ class Tournament:
     def __init__(self, style, verbose=False):
         self.verbose = verbose
         self.style = style
-        self.team_map = {0:3,1:2,2:1} if self.style == 4 else {0:1}
+        self.round_point_max = style-1
 
     def get_Break(self,teams,breaking,rounds,convert_string=False):
 
         if teams <= breaking:
             return "All Teams Break", "All Teams Break"
 
-        # make teams divisible by 4
-        while(teams% self.style != 0):
-            teams += 1
+        max_points = rounds*(self.round_point_max)
 
-        # come up with better name for 2d array
-        max_points = rounds*3
-
-
-        # each row represents a round
-        # each column represents the number of points
-        # rounds are indexed from 0 (i.e. row 0 = round 1)
-        # points start at 0
-        # each value represents the number of teams after round (row #) on the column number of points
+        # Simulate a tournament using a 2D matrix where:
+            # each row represents the round (.e. row 0 is round 1, row 1 is round 2, etc.)
+            # each column represents a number of points (column 0 = 0 points, column 1 = 1 point, etc.)
+            # each cell value represents the number of teams after round (row # + 1) on column number of points 
+            # (i.e. tournament[3][5] represents the number of teams after round 3 on 5 points)
         tournament = [[0 for i in range(max_points+1)] for i in range(rounds)]
-
         self.fill_data(tournament, rounds, teams)
 
         if self.verbose:
             print(np.array(tournament))
         
+        # get results
         results_best, results_worst = self.get_results(tournament=tournament[-1],teams=teams,breaking=breaking)
 
         if convert_string:
@@ -48,21 +42,21 @@ class Tournament:
     
     def fill_data(self, data, rounds, teams):
 
-        for i in range(4):
-            data[0][i] = teams / 4
+        for i in range(self.style):
+            data[0][i] = teams / self.style
 
         # starting from round 2
         for round in range(1, rounds):
-            round_max = (round+1)*3
+            round_max = (round+1)*self.round_point_max
             for point in range(round_max+1):
                 teams = 0
                 if point == 0:
-                    teams = data[round-1][0] / 4
+                    teams = data[round-1][0] / self.style
                 else: 
-                    for child in range(point-3,point+1):
+                    for child in range(point-self.round_point_max,point+1):
                         if child < 0:
                             continue
-                        teams += data[round-1][child] / 4
+                        teams += data[round-1][child] / self.style
                 
                 data[round][point] = teams
 
@@ -72,19 +66,10 @@ class Tournament:
     # the number breaking from this is (x - summation of all points until guranteed break) out of R where R can be ceil or floor of cutoff number
     # have to explain why R can either or if its best case, why not ceil (because there are break cases )
 
-    # BEST CASE
-    # same   but with rounded dow
-
     def get_results(self,tournament,teams,breaking):
-
-        #WANT
-        # guranteed break
-        # speaks break
-        # breaking on speaks
-        # total on speaks
-
-
-        print(f"TOURANEMNT={tournament}")
+        
+        if self.verbose:
+            print(f"TOURANEMNT={tournament}")
 
         #WORST CASE
         results_worst = {}
