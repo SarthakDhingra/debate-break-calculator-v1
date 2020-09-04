@@ -8,7 +8,7 @@ class Tournament:
     def __init__(self, style, verbose=False):
         self.verbose = verbose
         self.style = style
-        self.team_map = {0:3,1:2,2:1}
+        self.team_map = {0:3,1:2,2:1} if self.style == 4 else {0:1}
 
     def get_Break(self,teams,breaking,rounds,convert_string=False):
 
@@ -32,11 +32,9 @@ class Tournament:
             tournament_best.sort()
             tournament_worst.sort()
 
-        
-        # print("TOURNAMENT BEST")
-        # print(tournament_best)
-        # print("TOURNAMENT WORST")
-        # print(tournament_worst)
+        if self.verbose:
+            print(f"TOURNAMENT BEST = {tournament_best}")
+            print(f"TOURNAMENT WORST = {tournament_worst}")
         
         results_best = self.get_results(tournament=tournament_best,teams=teams,breaking=breaking)
         results_worst = self.get_results(tournament=tournament_worst,teams=teams,breaking=breaking)
