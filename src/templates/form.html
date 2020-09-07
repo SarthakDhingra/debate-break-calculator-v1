@@ -12,13 +12,15 @@
   <body>
     <form id="form" method="POST" action="/">
         <div>
-          <label>Number of Teams </label>
+          <label>Number of Teams</label>
           <input type="number" name="teams" required {% if teams %} value={{teams}} {% endif %}><br>
-          <label>Number of Rounds </label>
+          <label>Number of Preliminary Rounds </label>
           <input type="number" name="rounds" required {% if rounds %} value={{rounds}} {% endif %}><br>
-          <label>Number Breaking to OutRounds</label> 
+          <label>Number Advancing to Outrounds</label> 
           <input type="number" name="breaking" required {% if breaking %} value={{breaking}} {% endif %}><br>
         </div>
+      <label>Style</label>
+      <br>
       <div class="button">
         <button name="style" value=2 type="submit">Two Teams</button>
         <button name="style" value=4 type="submit">Four Teams</button>
