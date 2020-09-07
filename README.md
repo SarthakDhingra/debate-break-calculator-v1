@@ -1,5 +1,5 @@
 # Debate Break Calculator
-![Screenshot](img/form.png)
+![Screenshot](img/forms.png)
 
 ## Overview
 - Debating is an increasingly popular activity where teams will argue against each either in favour or against a motion (i.e. whether marijuana should be legalized). Thousands of debating tournaments are hosted every single year and the most recent Worlds Universities Debating Championships held in Thailand had over 1000 participants (https://wudc2020.herokuapp.com/wudc2020/)
