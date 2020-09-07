@@ -1,4 +1,5 @@
 # Debate Break Calculator
+![Screenshot](img/form.png)
 
 ## Overview
 - Debating is an increasingly popular activity where teams will argue against each either in favour or against a motion (i.e. whether marijuana should be legalized). Thousands of debating tournaments are hosted every single year and the most recent Worlds Universities Debating Championships held in Thailand had over 1000 participants (https://wudc2020.herokuapp.com/wudc2020/)
@@ -14,9 +15,10 @@
 - To terminate the server run `Ctrl` + `C`
 - run `deactivate` to terminate the virtual environment
 
-## Input
-![Screenshot](img/form.png)
+## Notes
 - Style is the number of teams that are in one debate. For example British Parliamentary is 'Four Teams' while Canadian Parliamentary and Australs are 'Two Teams'
+- The calculator assumes the tournament is using a bracketing system for creating the tournament draw. An explanation of the bracketing system can be found in the first paragraph of the following pdf: https://osdu.org/wp-content/uploads/2018/10/Bracketing_Scoring_System.pdf
+- Things like team conflicts that alter the tournament draw may cause errors
 
 ## TO DO
 - Handle Edge Cases
