@@ -13,10 +13,6 @@
 - To terminate the server run `Ctrl` + `C` or `CMD` + `C` if you are on a Mac
 - run `deactivate` to terminate the virtual environment
 
-## 
-
-
-
 ## TO DO
 - Handle Edge Cases
     - No Guranteed Break
