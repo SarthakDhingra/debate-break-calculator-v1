@@ -1,4 +1,4 @@
 #!/bin/bash
 virtualenv venv 
-source venv/bin/activate
+source venv/bin/activateasdf
 pip install -r requirements.txt
