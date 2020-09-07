@@ -10,7 +10,7 @@
 - run `setup.sh` in the root folder
 - run `flask run` in the root folder
 - At this point the site should be running in your browser at whatever url flask specifies in your 
-- To terminate the server run 'Ctrl C' or 'CMD C' if you are on a Mac
+- To terminate the server run `Ctrl` + `C` or `CMD` + `C` if you are on a Mac
 - run `deactivate` to terminate the virtual environment
 
 ## 
