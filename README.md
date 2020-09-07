@@ -15,7 +15,7 @@
 - run `deactivate` to terminate the virtual environment
 
 ## Input
-![Screenshot](img/dragonshell.png)
+![Screenshot](img/form.png)
 - Style is the number of teams that debate in one round. For example British Parliamentary is 'Four Teams' while Canadian Parliamentary and Australs are 'Two Teams'
 
 
