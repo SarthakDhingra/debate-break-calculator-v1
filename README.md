@@ -23,7 +23,7 @@
 - Things like team conflicts that alter the tournament draw may cause errors
 
 ## TO DO
-- Handle Edge Cases
+- Edge Cases
     - No Guranteed Break
     - Only one round (already done I think)
 - Errors
