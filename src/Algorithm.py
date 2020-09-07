@@ -86,8 +86,14 @@ class Tournament:
                 teams_broke += floor(tournament[point])
             point-=1
 
+        
         breaking_on_speaks = breaking - teams_broke_prev
         total_on_speaks = ceil(tournament[point+1])
+        
+        if breaking_on_speaks == total_on_speaks:
+            point -= 1
+            breaking_on_speaks = 0
+            total_on_speaks = ceil(tournament[point+1])
 
         results['speaks_break'] = point + 1
         results['guranteed_break'] = point + 2
