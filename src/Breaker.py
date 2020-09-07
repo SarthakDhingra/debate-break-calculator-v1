@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 
-import numpy as np
 from math import floor, ceil
-np.set_printoptions(linewidth=300)
-
-# ASSUMPTIONS:
-# Tournament is bracketed
 
 class Tournament:
     def __init__(self, style, verbose=False):
@@ -26,7 +21,9 @@ class Tournament:
         self.fill_data(tournament, rounds, teams)
 
         if self.verbose:
-            print(np.array(tournament))
+            print("TOURNAMENT:")
+            for row in tournament:
+                print(f"{row}\n")
         
         # get best and worst case break results
         results_best = self.get_results(tournament=tournament[-1], teams=teams, breaking=breaking, case="BEST")

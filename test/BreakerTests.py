@@ -6,9 +6,9 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + "/../src/")
 
-from Algorithm import Tournament
+from Breaker import Tournament
 
-class AlgorithmTests(unittest.TestCase):
+class BreakerTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -105,14 +105,14 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    AlgorithmTests.verbose = args.verbose
+    BreakerTests.verbose = args.verbose
 
     if args.test_name is None:
         unittest.main()
     else:
         test_name = "test_{0}".format(args.test_name)
         suite = unittest.TestSuite()
-        suite.addTest(AlgorithmTests(test_name))
+        suite.addTest(BreakerTests(test_name))
         runner = unittest.TextTestRunner()
         runner.run(suite)
 

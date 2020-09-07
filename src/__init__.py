@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from flask import Flask, render_template, request, redirect, url_for
 from wtforms import IntegerField, Form
 from wtforms.validators import NumberRange, ValidationError
-from Algorithm import Tournament
+from Breaker import Tournament
 
 # custom form validator to validate number of teams breaking
 class BreakingValidator(object):
