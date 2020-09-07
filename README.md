@@ -8,7 +8,7 @@
 ## Running the program
 - note: if using windows instructions will only work using windows bash
 - Install Python 3: https://www.python.org/downloads/
-- Install virtualenv: `pip install virtualenv`
+- Install virtualenv: `pip3 install virtualenv`
 - At this point if you type `pip3` or `virtualenv` in your terminal, you should not get an error similar to `command not found`
 - clone the repository
 - run `source setup.sh` in the root folder
