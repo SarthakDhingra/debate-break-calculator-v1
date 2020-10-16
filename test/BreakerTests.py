@@ -27,12 +27,14 @@ class BreakerTests(unittest.TestCase):
             print(f"EXPECTED = {answer}")
             print(f"RESULTS BEST = {results_best}")
             print(f"RESULTS WORST = {results_worst}\n")
-
+        
+        # make sure answer is bounded by best results
         self.assertLessEqual(results_best["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT BEST GURANTEED\n Expected: {answer}\n Result:{results_best}")
         self.assertLessEqual(results_best['speaks_break'], answer["speaks_break"],f"\nFAILRESULT BEST SPEAKS\n Expected: {answer}\n Result:{results_best}")
         if results_best['speaks_break'] == answer["speaks_break"]:
             self.assertLessEqual(answer["breaking_on_speaks"], results_best["breaking_on_speaks"], f"\nFAIL RESULT BEST\n Expected: {answer}\n Result:{results_best}")
         
+        #make sure answer is bounded by worst results
         self.assertGreaterEqual(results_worst["guranteed_break"], answer["guranteed_break"],f"\nFAIL RESULT WORST GURANTEED\n Expected: {answer}\n Result:{results_worst}")
         self.assertGreaterEqual(results_worst['speaks_break'], answer["speaks_break"],f"\nFAIL RESULT WORST SPEAKS\n Expected: {answer}\n Result:{results_worst}")
         if results_worst['speaks_break'] == answer["speaks_break"]:
