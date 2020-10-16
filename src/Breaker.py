@@ -92,7 +92,7 @@ class Tournament:
         # counter for total teams that have succesfully broken on or above guranteed break point
         teams_broke_prev = 0
 
-        # descend through points adding the number of teams that have broken
+        # descend through points adding the number of teams that have broken until break capacity is exceeded
         while teams_broke < breaking:
             teams_broke_prev = teams_broke
             if case == "WORST":
@@ -101,6 +101,7 @@ class Tournament:
                 teams_broke += floor(tournament[point])
             point-=1
 
+        
         breaking_on_speaks = breaking - teams_broke_prev
         total_on_speaks = ceil(tournament[point+1])
         
