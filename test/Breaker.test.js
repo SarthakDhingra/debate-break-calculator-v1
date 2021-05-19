@@ -8,7 +8,6 @@ function checkAnswer(style, test, answer) {
 
     let tournament = style == 4 ? FourTeams : TwoTeams
 
-
     results = tournament.getBreak(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
     
     console.log(results)
