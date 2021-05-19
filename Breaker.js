@@ -1,4 +1,10 @@
-#! usr/bin/env node
+#!/usr/bin/env node
+
+// NOMENCLATURE:
+// break: advance to outrounds
+// guranteed break point: all teams on this point will break
+// speaks break: some teams will break on this point
+
 
 class Tournament{
     constructor(style, verbose=false) {
@@ -17,9 +23,15 @@ class Tournament{
         // tournament point max for a team 
         let max_points = rounds * this.round_point_max;
 
-        // create tournament TODO: (should change this t)
+        // create tournament TODO: (should change this)
 
-        let test = Array(rounds).keys();
+        const tournament = [];
+
+        for (let i = 0; i < rounds; i++) {
+            const round = new Array(max_points + 1).fill(0);
+            tournament.push(round);
+            console.log(round);
+        }
 
     }
 }
@@ -31,7 +43,7 @@ function get_results() {
 
 if (require.main === module) {
     get_results();
-    tournament = new Tournament(2);
-    tournament.get_break(12, 8, 4);
+    tournament = new Tournament(4);
+    tournament.get_break(teams=12, breaking=8, rounds=4);
 
 }
