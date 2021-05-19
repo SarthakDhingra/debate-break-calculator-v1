@@ -13,7 +13,7 @@ class Tournament{
         this.round_point_max = style -1;
     }
 
-    get_break(teams, breaking, rounds) {
+    getBreak(teams, breaking, rounds) {
 
         // edge case where all teams break
         if (teams <= breaking) {
@@ -33,19 +33,13 @@ class Tournament{
             console.log(round);
         }
 
+        return ["RESULTS", "ARRAY"]
+
     }
 }
 
-
 function get_results() {
     console.log("getting results");
-}
-
-if (require.main === module) {
-    get_results();
-    tournament = new Tournament(4);
-    tournament.get_break(teams=12, breaking=8, rounds=4);
-
 }
 
 module.exports = Tournament;
