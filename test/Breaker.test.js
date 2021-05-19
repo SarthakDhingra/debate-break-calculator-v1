@@ -5,7 +5,16 @@ const TwoTeams = new Tournament(2);
 
 
 function check_answer(style, test, answer) {
+
+    let tournament = style == 4 ? FourTeams : TwoTeams
+
+
+    results = tournament.getBreak(teams=test["teams"], breaking=test["breaking"],rounds=test["rounds"])
     
+    console.log(results)
+
+    expect(1).toBe(1)
+
 }
 
 test('ubciv_2019', () => {
