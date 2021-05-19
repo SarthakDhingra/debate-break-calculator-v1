@@ -47,3 +47,5 @@ if (require.main === module) {
     tournament.get_break(teams=12, breaking=8, rounds=4);
 
 }
+
+module.exports = Tournament;
