@@ -32,14 +32,26 @@ class Tournament{
             tournament.push(round);
         }
 
-        this.fillData(tournament, rounds, teams);
-
-        console.log("TOURNAMENT FILLED")
+        //console.log("TOURNAMENT 1:")
         for (let i = 0; i < tournament.length; i++ ) {
-            console.log(tournament[i])
+            //console.log(tournament[i])
         }
 
-        return ["RESULTS", "ARRAY"]
+        this.fillData(tournament, rounds, teams);
+
+        //console.log("TOURNAMENT 2:")
+        for (let i = 0; i < tournament.length; i++ ) {
+            //console.log(tournament[i])
+        }
+
+        // get best and worst case break results TODO: better to just call getResults once and return one array with two objects
+        // have while loop in its own function maybe to do this
+        // or just nest in a for loop with both cases
+
+        let results_best = this.getResults(tournament.slice(-1), breaking, "BEST")
+        let results_worst = this.getResults(tournament.slice(-1), breaking, "WORST")
+
+        return [results_best, results_worst]
 
     }
 
@@ -77,7 +89,7 @@ class Tournament{
                         if (child < 0) {
                             continue
                         }
-                        teams += tournament[round-1][child] / self.style
+                        teams += tournament[round-1][child] / this.style
                     }                        
                 }
                 tournament[round][point] = teams
@@ -85,11 +97,65 @@ class Tournament{
         }
     }
 
+    getResults(tournament, breaking, cases) {
+
+
+        //console.log("TOURNAMENT")
+        //console.log(tournament)
+
+        let results = {}
+
+        tournament = tournament[0]
+
+        let point = tournament.length - 1
+
+        // counter for total teams that have succesfully broken
+        let teams_broke = 0 
+        
+        // counter for total teams that have succesfully broken on or above guranteed break point
+        let teams_broke_prev = 0
+
+        // descend through points adding the number of teams that have broken until break capacity is exceeded
+        while (teams_broke < breaking) {
+            teams_broke_prev = teams_broke
+            if (cases === "WORST") {
+                teams_broke += Math.ceil(tournament[point])
+            } else {
+                teams_broke += Math.floor(tournament[point])
+            }
+            point-=1
+        }
+
+        let breaking_on_speaks = breaking - teams_broke_prev
+        let total_on_speaks = Math.ceil(tournament[point+1])
+        
+        // handle edge case where all teams on speaks break
+        if (breaking_on_speaks === total_on_speaks) {
+            point -= 1
+            breaking_on_speaks = 0
+            total_on_speaks = Math.ceil(tournament[point+1])
+        }
+
+        // fill dict with desired values
+        results['speaks_break'] = point + 1
+        results['guranteed_break'] = point + 2
+        results['breaking_on_speaks'] = breaking_on_speaks
+        results['total_on_speaks'] = total_on_speaks
+
+        return results
+
+    }
+
 
 }
 
-function get_results() {
-    console.log("getting results");
+if (require.main === module) {
+    let teams = 40
+    let breaking = 8
+    let rounds = 5
+
+    let FourTeams = new Tournament(4)
+    FourTeams.getBreak(teams, breaking, rounds)
 }
 
 

@@ -25,11 +25,17 @@ class Tournament:
         # declare tournament
         tournament = [[0 for i in range(max_points+1)] for i in range(rounds)]
 
+
+        if self.verbose:
+            print("TOURNAMENT 1:")
+            for row in tournament:
+                print(f"{row}\n")
+
         # simulate tournament
         self.fill_data(tournament, rounds, teams)
 
         if self.verbose:
-            print("TOURNAMENT:")
+            print("TOURNAMENT 2:")
             for row in tournament:
                 print(f"{row}\n")
         
@@ -86,6 +92,8 @@ class Tournament:
         
         results = {} 
         point = len(tournament)-1
+
+        print(f'point={point}')
 
         # counter for total teams that have succesfully broken
         teams_broke = 0 
