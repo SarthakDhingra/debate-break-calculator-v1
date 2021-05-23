@@ -10,8 +10,9 @@ def make_jest():
 
     lines = f.readlines()
 
-
     i = 0
+
+    f = open("jest_output.txt", "w")
 
     while i < len(lines):
         line = lines[i]
@@ -20,23 +21,17 @@ def make_jest():
             test = lines[i+1].strip()
             answer = lines[i+2].strip()
             style = re.search(r'\d+', lines[i+3].strip()).group()
-            print(line)
-            print(test_name)
-            print(test)
-            print(answer)
-            print(style)
+            final_test = """
+            test('%s', () => {
+                let %s
+                let %s
+                let style = %s;
+                checkAnswer(style, test, answer); 
+            });\n""" % (test_name, test, answer, style)
+            f.write(final_test)
+            print(i)
         i += 1
-        
-    final_test = """
-test('%s', () => {
-    let %s
-    let %s
-    let style = %s;
-    checkAnswer(style, test, answer); 
-});\n""" % (test_name, test, answer, style)
 
-    f = open("jest_output.txt", "w")
-    f.write(final_test)
     f.close()
 
 if __name__ == "__main__":
