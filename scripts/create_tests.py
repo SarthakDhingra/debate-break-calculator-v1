@@ -4,7 +4,7 @@ import re
 
 # script to convert my py unittest tests to jest tests
 
-def make_jest():
+def make_test():
 
     f = open("python_tests.txt", "r")
 
@@ -12,7 +12,7 @@ def make_jest():
 
     i = 0
 
-    f = open("jest_output.txt", "w")
+    f = open("test_output.txt", "w")
 
     while i < len(lines):
         line = lines[i]
@@ -21,13 +21,15 @@ def make_jest():
             test = lines[i+1].strip()
             answer = lines[i+2].strip()
             style = re.search(r'\d+', lines[i+3].strip()).group()
+
             final_test = """
-            test('%s', () => {
+            it('%s', function() {
                 let %s
                 let %s
-                let style = %s;
-                checkAnswer(style, test, answer); 
-            });\n""" % (test_name, test, answer, style)
+                let style = %s
+                checkAnswer(style, test, answer)
+            });\n""" % (test_name, test, answer, style) 
+
             f.write(final_test)
             print(i)
         i += 1
@@ -35,4 +37,4 @@ def make_jest():
     f.close()
 
 if __name__ == "__main__":
-    make_jest()
+    make_test()
