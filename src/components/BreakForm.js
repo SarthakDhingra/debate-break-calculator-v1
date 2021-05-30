@@ -23,7 +23,6 @@ app.component('break-form', {
     methods: {
         onSubmit() {
             console.log("TESTING")
-            // hi();
         }
     }
 })
