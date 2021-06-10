@@ -5,27 +5,46 @@
         <title> Debate Break Calculator </title>
         <!-- Import Vue.js -->
         <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+        <!-- <link rel="stylesheet" href="./css/styles.css"> -->
     </head>
-    <body>
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .bg {
+            /* The image used */
+            background-image: url("./assets/img/background.jpeg");/*url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");*/
 
-        <div id="app">
-            <h1>{{ title }}</h1>
-            <p>{{ description }}</p>
-            <break-form></break-form>
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+    <body>
+        <div class="bg">
+            <div id="app">
+                <break-form></break-form>
+            </div>
+    
+            <!-- <script type= "module" src="./Breaker.js"></script> -->
+    
+            <script src="./main.js"></script>
+    
+            <script src="./mixins/Breaker.js"></script>
+    
+            <!-- Import Components -->
+            <script src="./components/BreakForm.js"></script>
+    
+            <script>
+                const mountedApp = app.mount('#app')
+            </script>
         </div>
 
-        <!-- <script type= "module" src="./Breaker.js"></script> -->
-
-        <script src="./main.js"></script>
-
-        <script src="./mixins/Breaker.js"></script>
-
-        <!-- Import Components -->
-        <script src="./components/BreakForm.js"></script>
-
-        <script>
-            const mountedApp = app.mount('#app')
-        </script>
         
     </body>
 

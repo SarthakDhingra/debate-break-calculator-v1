@@ -4,30 +4,35 @@ app.component('break-form', {
     template:
     /*html*/
     `
-    <form class='break-form' @submit.prevent="onSubmit($event)">
-        <h3> This is the Form</h3>
-        <label for="teams">Number of TeamsS</label>
-        <input id="teams" v-model.number="teams" >
-        <label for="rounds">Number of Preliminary Rounds </label>
-        <input id="rounds" v-model.number="rounds">
-        <label for="breaking">Number Advancing to Outrounds</label> 
-        <input id="breaking" v-model.number="breaking">
+    <div style="text-align:center; ">
+        <h1>{{ title }}</h1>
+        <p>{{ description }}</p>
 
-        <button name="style" value=2 type="submit">Two Teams</button>
-        <button name="style" value=4 type="submit">Four Teams</button> 
-    </form>
+        <form class='break-form' @submit.prevent="onSubmit($event)">
+            <h3> This is the Form</h3>
+            <label for="teams">Number of TeamsS</label>
+            <input id="teams" v-model.number="teams" >
+            <label for="rounds">Number of Preliminary Rounds </label>
+            <input id="rounds" v-model.number="rounds">
+            <label for="breaking">Number Advancing to Outrounds</label> 
+            <input id="breaking" v-model.number="breaking">
 
-    <div v-if="displayResults">
-        <table style="width:100%">
-            <tr>
-                <th>Best Case Scenario</th>
-                <th>Worst Case Scenario</th>
-            </tr>
-            <tr>
-                <td>{{best_string}}</td>
-                <td>{{worst_string}}</td>
-            </tr>
-        </table>
+            <button name="style" value=2 type="submit">Two Teams</button>
+            <button name="style" value=4 type="submit">Four Teams</button> 
+        </form>
+
+        <div v-if="displayResults" class="white-box">
+            <table style="width:100%">
+                <tr>
+                    <th>Best Case Scenario</th>
+                    <th>Worst Case Scenario</th>
+                </tr>
+                <tr>
+                    <td>{{best_string}}</td>
+                    <td>{{worst_string}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     
@@ -37,6 +42,10 @@ app.component('break-form', {
     `,
     data() {
         return {
+            title: 'Debate Break Calculator',
+            // Solution
+            description: 'Calculator to determine the points required to advance to outrounds at debating tournaments',
+            // Solution
             teams: null,
             rounds: null,
             breaking: null,
@@ -65,3 +74,4 @@ app.component('break-form', {
         }
     }
 })
+
