@@ -13,31 +13,55 @@ app.component('break-form', {
         <label for="breaking">Number Advancing to Outrounds</label> 
         <input id="breaking" v-model.number="breaking">
 
-        <button name="style" value=2 type="submit" v-bind="style">Two Teams</button>
-        <button name="style" value=4 type="submit" v-bind="style">Four Teams</button> 
+        <button name="style" value=2 type="submit">Two Teams</button>
+        <button name="style" value=4 type="submit">Four Teams</button> 
     </form>
+
+    <div v-if="displayResults">
+        <table style="width:100%">
+            <tr>
+                <th>Best Case Scenario</th>
+                <th>Worst Case Scenario</th>
+            </tr>
+            <tr>
+                <td>{{best_string}}</td>
+                <td>{{worst_string}}</td>
+            </tr>
+        </table>
+    </div>
+
+    
+
 
 
     `,
     data() {
         return {
-            teams: 40,
-            rounds: 5,
-            breaking: 8,
+            teams: null,
+            rounds: null,
+            breaking: null,
+            displayResults: false,
+            best_string: '',
+            worst_string: ''
         }
     },
     methods: {
         onSubmit(event) {
 
-            console.log("TESTING")
             let style = event.submitter.attributes.value.value
-            console.log(style) // 4
-            console.log(this.teams) // 40
-            console.log(this.rounds) // 5
-            console.log(this.breaking) // 8
             let results = this.getResults(style, this.teams, this.breaking, this.rounds)
             console.log("RESULTS")
-            console.log(results)
+            let best = results[0]
+            let worst = results[1]
+
+            console.log(best)
+            console.log(worst)
+            this.best_string = `All teams on ${best.guranteed_break} points will break. ${best.breaking_on_speaks} out of ${best.total_on_speaks} teams on ${best.speaks_break} points will break`
+            this.worst_string = `All teams on ${worst.guranteed_break} points will break. ${worst.breaking_on_speaks} out of ${worst.total_on_speaks} teams on ${worst.speaks_break} points will break`
+            this.displayResults = true
+
+
+            // <h1 v-if="awesome">Vue is awesome!</h1>
         }
     }
 })
