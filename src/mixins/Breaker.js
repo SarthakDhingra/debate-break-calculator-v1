@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // NOMENCLATURE:
 // break: advance to outrounds
 // guranteed break point: all teams on this point will break
@@ -149,15 +147,23 @@ class Tournament{
 
 }
 
-if (require.main === module) {
-    let teams = 40
-    let breaking = 8
-    let rounds = 5
+app.mixin({
+    methods: {
+        getResults(style, teams, breaking, rounds) {
+            let tournament = new Tournament(style)
+            results = tournament.getBreak(teams, breaking, rounds)
+            return results
+        }
+    }
+})
+// if (require.main === module) {
+//     let teams = 40
+//     let breaking = 8
+//     let rounds = 5
 
-    let FourTeams = new Tournament(4)
-    FourTeams.getBreak(teams, breaking, rounds)
-}
+//     let FourTeams = new Tournament(4)
+//     FourTeams.getBreak(teams, breaking, rounds)
+// }
 
 
-
-module.exports = Tournament;
+// module.exports = Tournament;
