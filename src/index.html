@@ -8,10 +8,12 @@
         <!-- <link rel="stylesheet" href="./css/styles.css"> -->
     </head>
     <style>
-        body, html {
+        html {
             height: 100%;
-        }
-        .bg {
+        } 
+
+        body {
+
             /* The image used */
             background-image: url("./assets/img/background.jpeg");/*url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");*/
 
@@ -22,11 +24,16 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            
+        }
+
+        .testing {
+            text-align:center;
         }
 
     </style>
     <body>
-        <div class="bg">
+        <div>
             <div id="app">
                 <break-form></break-form>
             </div>
@@ -44,8 +51,6 @@
                 const mountedApp = app.mount('#app')
             </script>
         </div>
-
-        
     </body>
 
 </html>

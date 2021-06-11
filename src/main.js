@@ -13,9 +13,8 @@ const app = Vue.createApp({
 
 
 // TO DO
-// - get rid of white edge around Image
-// - center form verticall and horizontally
-// - correctly position title and description closer to top
-// - add box around form
+// - add box around form with background
+// - center form verticall and horizontally using flex box
+// - position title and description using flex box
 // - move styling to a separate file
 

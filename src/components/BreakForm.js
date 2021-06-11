@@ -4,25 +4,30 @@ app.component('break-form', {
     template:
     /*html*/
     `
-    <div style="text-align:center; ">
+    <div class="testing">
         <h1>{{ title }}</h1>
         <p>{{ description }}</p>
 
-        <form class='break-form' @submit.prevent="onSubmit($event)">
-            <h3> This is the Form</h3>
-            <label for="teams">Number of TeamsS</label>
-            <input id="teams" v-model.number="teams" >
-            <label for="rounds">Number of Preliminary Rounds </label>
-            <input id="rounds" v-model.number="rounds">
-            <label for="breaking">Number Advancing to Outrounds</label> 
-            <input id="breaking" v-model.number="breaking">
 
+        <form class='break-form' @submit.prevent="onSubmit($event)">
+            <label for="teams">Number of Teams</label>
+            <br>
+            <input id="teams" v-model.number="teams" >
+            <br>
+            <label for="rounds">Number of Preliminary Rounds </label>
+            <br>
+            <input id="rounds" v-model.number="rounds">
+            <br>
+            <label for="breaking">Number Advancing to Outrounds</label> 
+            <br>
+            <input id="breaking" v-model.number="breaking">
+            <br>
             <button name="style" value=2 type="submit">Two Teams</button>
             <button name="style" value=4 type="submit">Four Teams</button> 
         </form>
 
-        <div v-if="displayResults" class="white-box">
-            <table style="width:100%">
+        <div v-if="displayResults">
+            <table>
                 <tr>
                     <th>Best Case Scenario</th>
                     <th>Worst Case Scenario</th>
