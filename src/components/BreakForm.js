@@ -4,7 +4,7 @@ app.component('break-form', {
     template:
     /*html*/
     `
-    <div>
+    <div class="child">
         <form class="pure-form pure-form-stacked splash-subhead" @submit.prevent="onSubmit($event)">
             <label for="teams">TEAMS</label>
             <input id="teams" v-model.number="teams">
@@ -18,20 +18,19 @@ app.component('break-form', {
             <button class="pure-button" name="style" value=2 type="submit">Two Teams</button>
             <button class="pure-button" name="style" value=4 type="submit">Four Teams</button> 
         </form>
+    </div>
 
-        <div v-if="displayResults" class="splash-subhead">
-            <table>
-                <tr>
-                    <th>BEST CASE</th>
-                    <th>WORST CASE</th>
-                </tr>
-                <tr>
-                    <td>{{best_string}}</td>
-                    <td>{{worst_string}}</td>
-                </tr>
-            </table>
-        </div>
-
+    <div v-if="displayResults" class="splash-subhead grandchild">
+        <table>
+            <tr>
+                <th>BEST CASE</th>
+                <th>WORST CASE</th>
+            </tr>
+            <tr>
+                <td>{{best_string}}</td>
+                <td>{{worst_string}}</td>
+            </tr>
+        </table>
     </div>
 
     `,
@@ -59,9 +58,6 @@ app.component('break-form', {
             this.best_string = `All teams on ${best.guranteed_break} points will break. ${best.breaking_on_speaks} out of ${best.total_on_speaks} teams on ${best.speaks_break} points will break`
             this.worst_string = `All teams on ${worst.guranteed_break} points will break. ${worst.breaking_on_speaks} out of ${worst.total_on_speaks} teams on ${worst.speaks_break} points will break`
             this.displayResults = true
-
-
-            // <h1 v-if="awesome">Vue is awesome!</h1>
         }
     }
 })
