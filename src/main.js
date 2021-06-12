@@ -3,12 +3,16 @@
 const app = Vue.createApp({
     data() {
         return {
-            title: 'Debate Break Calculator',
+            title: 'DEBATE BREAKER',
             // Solution
-            description: 'Calculator to determine the points required to advance to outrounds at debating tournaments' 
+            description: 'DETERMINES THE POINTS NEEDED TO ADVANCE TO OUTROUNDS AT DEBATING TOURNAMENTS' 
             // Solution
         }
     }
 })
 
+
+// TO DO
+// - correctly position site
+// - input handling and testing
 

@@ -4,24 +4,27 @@ app.component('break-form', {
     template:
     /*html*/
     `
-    <form class='break-form' @submit.prevent="onSubmit($event)">
-        <h3> This is the Form</h3>
-        <label for="teams">Number of TeamsS</label>
-        <input id="teams" v-model.number="teams" >
-        <label for="rounds">Number of Preliminary Rounds </label>
-        <input id="rounds" v-model.number="rounds">
-        <label for="breaking">Number Advancing to Outrounds</label> 
-        <input id="breaking" v-model.number="breaking">
+    <div class="child">
+        <form class="pure-form pure-form-stacked splash-subhead" @submit.prevent="onSubmit($event)">
+            <label for="teams">TEAMS</label>
+            <input id="teams" v-model.number="teams">
+            <br>
+            <label for="rounds">ROUNDS</label>
+            <input id="rounds" v-model.number="rounds">
+            <br>
+            <label for="breaking">BREAKING</label> 
+            <input id="breaking" v-model.number="breaking">
+            <br>
+            <button class="pure-button" name="style" value=2 type="submit">Two Teams</button>
+            <button class="pure-button" name="style" value=4 type="submit">Four Teams</button> 
+        </form>
+    </div>
 
-        <button name="style" value=2 type="submit">Two Teams</button>
-        <button name="style" value=4 type="submit">Four Teams</button> 
-    </form>
-
-    <div v-if="displayResults">
-        <table style="width:100%">
+    <div v-if="displayResults" class="splash-subhead grandchild">
+        <table>
             <tr>
-                <th>Best Case Scenario</th>
-                <th>Worst Case Scenario</th>
+                <th>BEST CASE</th>
+                <th>WORST CASE</th>
             </tr>
             <tr>
                 <td>{{best_string}}</td>
@@ -30,16 +33,12 @@ app.component('break-form', {
         </table>
     </div>
 
-    
-
-
-
     `,
     data() {
         return {
-            teams: null,
-            rounds: null,
-            breaking: null,
+            teams: 40,
+            rounds: 5,
+            breaking: 8,
             displayResults: false,
             best_string: '',
             worst_string: ''
@@ -59,9 +58,7 @@ app.component('break-form', {
             this.best_string = `All teams on ${best.guranteed_break} points will break. ${best.breaking_on_speaks} out of ${best.total_on_speaks} teams on ${best.speaks_break} points will break`
             this.worst_string = `All teams on ${worst.guranteed_break} points will break. ${worst.breaking_on_speaks} out of ${worst.total_on_speaks} teams on ${worst.speaks_break} points will break`
             this.displayResults = true
-
-
-            // <h1 v-if="awesome">Vue is awesome!</h1>
         }
     }
 })
+
