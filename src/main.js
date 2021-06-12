@@ -13,16 +13,6 @@ const app = Vue.createApp({
 
 
 // TO DO
-// - style header
-    // - change Color 
-    // - change font 
-    // - change size
-    // - add box around title
-    // - position correctle
-// - style form
-    // - Color
-    // - font 
-    // - size 
-    // - position
-    // - position should not change on form submit
+// - correctly position site
+// - input handling and testing
 
