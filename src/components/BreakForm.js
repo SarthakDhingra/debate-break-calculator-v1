@@ -4,7 +4,7 @@ app.component('break-form', {
     template:
     /*html*/
     `
-    <div class="child">
+    <div>
         <form @submit.prevent="onSubmit($event)">
             <label for="teams">Teams</label>
             <input id="teams" v-model.number="teams">
@@ -15,11 +15,11 @@ app.component('break-form', {
             <label for="breaking">Breaking</label> 
             <input id="breaking" v-model.number="breaking">
             <br>
-            <button class="pure-button" name="style" value=2 type="submit">Two Teams</button>
-            <button class="pure-button" name="style" value=4 type="submit">Four Teams</button> 
+            <button name="style" value=2 type="submit">Two Teams</button>
+            <button name="style" value=4 type="submit">Four Teams</button> 
         </form>
 
-        <div v-if="displayResults" style="color:white">
+        <div v-if="displayResults">
             <table>
                 <tr>
                     <th>Best Case Scenario</th>
@@ -37,9 +37,9 @@ app.component('break-form', {
     `,
     data() {
         return {
-            teams: null,
-            rounds: null,
-            breaking: null,
+            teams: 40,
+            rounds: 5,
+            breaking: 8,
             displayResults: false,
             best_string: '',
             worst_string: ''

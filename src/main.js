@@ -13,8 +13,16 @@ const app = Vue.createApp({
 
 
 // TO DO
-// - add box around form with background
-// - center form verticall and horizontally using flex box
-// - position title and description using flex box
-// - move styling to a separate file
+// - style header
+    // - change Color 
+    // - change font 
+    // - change size
+    // - add box around title
+    // - position correctle
+// - style form
+    // - Color
+    // - font 
+    // - size 
+    // - position
+    // - position should not change on form submit
 
