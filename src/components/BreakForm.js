@@ -5,25 +5,25 @@ app.component('break-form', {
     /*html*/
     `
     <div>
-        <form @submit.prevent="onSubmit($event)">
-            <label for="teams">Teams</label>
+        <form class="pure-form pure-form-stacked splash-subhead" @submit.prevent="onSubmit($event)">
+            <label for="teams">TEAMS</label>
             <input id="teams" v-model.number="teams">
             <br>
-            <label for="rounds">Rounds</label>
+            <label for="rounds">ROUNDS</label>
             <input id="rounds" v-model.number="rounds">
             <br>
-            <label for="breaking">Breaking</label> 
+            <label for="breaking">BREAKING</label> 
             <input id="breaking" v-model.number="breaking">
             <br>
-            <button name="style" value=2 type="submit">Two Teams</button>
-            <button name="style" value=4 type="submit">Four Teams</button> 
+            <button class="pure-button" name="style" value=2 type="submit">Two Teams</button>
+            <button class="pure-button" name="style" value=4 type="submit">Four Teams</button> 
         </form>
 
-        <div v-if="displayResults">
+        <div v-if="displayResults" class="splash-subhead">
             <table>
                 <tr>
-                    <th>Best Case Scenario</th>
-                    <th>Worst Case Scenario</th>
+                    <th>BEST CASE</th>
+                    <th>WORST CASE</th>
                 </tr>
                 <tr>
                     <td>{{best_string}}</td>
