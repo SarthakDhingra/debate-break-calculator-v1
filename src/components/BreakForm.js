@@ -4,29 +4,22 @@ app.component('break-form', {
     template:
     /*html*/
     `
-    <div class="testing">
-        <h1>{{ title }}</h1>
-        <p>{{ description }}</p>
-
-
-        <form class='break-form' @submit.prevent="onSubmit($event)">
-            <label for="teams">Number of Teams</label>
+    <div class="child">
+        <form @submit.prevent="onSubmit($event)">
+            <label for="teams">Teams</label>
+            <input id="teams" v-model.number="teams">
             <br>
-            <input id="teams" v-model.number="teams" >
-            <br>
-            <label for="rounds">Number of Preliminary Rounds </label>
-            <br>
+            <label for="rounds">Rounds</label>
             <input id="rounds" v-model.number="rounds">
             <br>
-            <label for="breaking">Number Advancing to Outrounds</label> 
-            <br>
+            <label for="breaking">Breaking</label> 
             <input id="breaking" v-model.number="breaking">
             <br>
-            <button name="style" value=2 type="submit">Two Teams</button>
-            <button name="style" value=4 type="submit">Four Teams</button> 
+            <button class="pure-button" name="style" value=2 type="submit">Two Teams</button>
+            <button class="pure-button" name="style" value=4 type="submit">Four Teams</button> 
         </form>
 
-        <div v-if="displayResults">
+        <div v-if="displayResults" style="color:white">
             <table>
                 <tr>
                     <th>Best Case Scenario</th>
@@ -38,19 +31,12 @@ app.component('break-form', {
                 </tr>
             </table>
         </div>
+
     </div>
-
-    
-
-
 
     `,
     data() {
         return {
-            title: 'Debate Break Calculator',
-            // Solution
-            description: 'Calculator to determine the points required to advance to outrounds at debating tournaments',
-            // Solution
             teams: null,
             rounds: null,
             breaking: null,

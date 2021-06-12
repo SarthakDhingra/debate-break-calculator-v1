@@ -6,35 +6,42 @@
         <!-- Import Vue.js -->
         <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
         <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
     </head>
     <style>
-        html {
-            height: 100%;
-        } 
 
         body {
+            line-height: 1.7em;
+            font-size: 13px;
+            background: #1f8dd6;
 
-            /* The image used */
-            background-image: url("./assets/img/background.jpeg");/*url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");*/
-
-            /* Full height */
-            height: 100%;
-
-            /* Center and scale the image nicely */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            
         }
 
-        .testing {
-            text-align:center;
+        .pure-button {
+            background: white;
+            color: #1f8dd6;
+            border-radius: 5px;
+            font-size: 120%;
+            margin: 5px;
         }
+
+        .child{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        
 
     </style>
     <body>
         <div>
-            <div id="app">
+            <div id="app" class="splash-container">
+                <div>
+                    <h1 class="splash-head">{{ title }}</h1>
+                    <p class="splash-subhead">{{ description }}</p>
+                </div>
                 <break-form></break-form>
             </div>
     
